@@ -10,7 +10,7 @@ struct Home_Screen: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("HOME AARAV PAGE")
+                Text("HOME AARAV gupta PAGE")
                 
                 TabView(selection: .constant(1)) {
                     HStack {
