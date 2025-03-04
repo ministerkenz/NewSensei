@@ -11,6 +11,12 @@
 		63D080862D778ABF00625FE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080852D778ABF00625FE7 /* ContentView.swift */; };
 		63D080882D778AC000625FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D080872D778AC000625FE7 /* Assets.xcassets */; };
 		63D0808B2D778AC000625FE7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D0808A2D778AC000625FE7 /* Preview Assets.xcassets */; };
+		63D080922D778AEC00625FE7 /* Home Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080912D778AEC00625FE7 /* Home Screen.swift */; };
+		63D080942D778B1A00625FE7 /* skillinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080932D778B1A00625FE7 /* skillinfo.swift */; };
+		63D080962D778B2700625FE7 /* skillinfoview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080952D778B2700625FE7 /* skillinfoview.swift */; };
+		63D080982D778B2E00625FE7 /* SkillCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080972D778B2E00625FE7 /* SkillCreation.swift */; };
+		63D0809A2D778B3700625FE7 /* SkillDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080992D778B3700625FE7 /* SkillDetailView.swift */; };
+		63D0809C2D778B3B00625FE7 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0809B2D778B3B00625FE7 /* Navigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		63D080852D778ABF00625FE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63D080872D778AC000625FE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63D0808A2D778AC000625FE7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63D080912D778AEC00625FE7 /* Home Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home Screen.swift"; sourceTree = "<group>"; };
+		63D080932D778B1A00625FE7 /* skillinfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skillinfo.swift; sourceTree = "<group>"; };
+		63D080952D778B2700625FE7 /* skillinfoview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skillinfoview.swift; sourceTree = "<group>"; };
+		63D080972D778B2E00625FE7 /* SkillCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCreation.swift; sourceTree = "<group>"; };
+		63D080992D778B3700625FE7 /* SkillDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillDetailView.swift; sourceTree = "<group>"; };
+		63D0809B2D778B3B00625FE7 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +64,13 @@
 			isa = PBXGroup;
 			children = (
 				63D080832D778ABF00625FE7 /* NewSenseiApp.swift */,
+				63D080912D778AEC00625FE7 /* Home Screen.swift */,
+				63D080932D778B1A00625FE7 /* skillinfo.swift */,
+				63D080952D778B2700625FE7 /* skillinfoview.swift */,
+				63D080972D778B2E00625FE7 /* SkillCreation.swift */,
+				63D080992D778B3700625FE7 /* SkillDetailView.swift */,
 				63D080852D778ABF00625FE7 /* ContentView.swift */,
+				63D0809B2D778B3B00625FE7 /* Navigation.swift */,
 				63D080872D778AC000625FE7 /* Assets.xcassets */,
 				63D080892D778AC000625FE7 /* Preview Content */,
 			);
@@ -137,8 +155,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D0809A2D778B3700625FE7 /* SkillDetailView.swift in Sources */,
 				63D080862D778ABF00625FE7 /* ContentView.swift in Sources */,
+				63D080962D778B2700625FE7 /* skillinfoview.swift in Sources */,
+				63D0809C2D778B3B00625FE7 /* Navigation.swift in Sources */,
+				63D080942D778B1A00625FE7 /* skillinfo.swift in Sources */,
 				63D080842D778ABF00625FE7 /* NewSenseiApp.swift in Sources */,
+				63D080982D778B2E00625FE7 /* SkillCreation.swift in Sources */,
+				63D080922D778AEC00625FE7 /* Home Screen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
