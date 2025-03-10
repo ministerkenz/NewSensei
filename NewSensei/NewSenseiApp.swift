@@ -24,7 +24,7 @@ struct NewSenseiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(daysToCheck: days)
+            ContentView()
                 .environmentObject(user)
         }
     }

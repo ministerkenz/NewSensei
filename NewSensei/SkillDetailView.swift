@@ -24,6 +24,9 @@ struct SkillDetailView: View {
           
             Button(action: {
                 //brings us to the next thing
+                NavigationLink(destination: SkillDetailView(contact: $contact)) {
+                }
+                
             }, label: {
                 Text("Begin")
             })

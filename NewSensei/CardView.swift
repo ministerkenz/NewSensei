@@ -1,5 +1,53 @@
 import SwiftUI
 
+struct CardView: View {
+    var step: String
+    var onSwipe: (Int) -> Void
+    
+    @State private var offset: CGSize = .zero
+
+    
+    
+    
+    var body: some View {
+        Text(step)
+            .font(.title)
+            .padding()
+            .frame(width: 300, height: 400)
+            .background(RoundedRectangle(cornerRadius: 20).fill(Color.blue))
+            .offset(offset)
+            .rotationEffect(.degrees(Double(offset.width / 3000)))
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        offset = gesture.translation
+                    }
+                    .onEnded { gesture in
+                        if abs(gesture.translation.width) > 150 {
+                            let direction = gesture.translation.width > 0 ? 1 : -1
+                            withAnimation {
+                                offset.width = direction > 0 ? 500 : -500
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                onSwipe(direction)
+                                offset = .zero
+                            }
+                        } else {
+                            offset = .zero
+                        }
+                    }
+            )
+            .animation(.spring(), value: offset)
+    }
+}
+
+#Preview {
+    CardView(step: "Step 1", onSwipe: { _ in })
+}
+
+
+
+/*
 enum dayState {
     case love
     case poop
@@ -105,3 +153,5 @@ private struct CardViewConsts {
 #Preview {
     CardView()
 }
+
+*/
