@@ -6,6 +6,9 @@
 //
 
 import Foundation
+
+var days: [String] = ["Wednesday", "Tuesday", "Monday"]
+
 struct skillinfo: Identifiable{
     let id = UUID()
     var name: String
