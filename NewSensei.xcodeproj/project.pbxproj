@@ -32,6 +32,7 @@
 		63D080DA2D7F68A900625FE7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080D92D7F68A900625FE7 /* Colors.swift */; };
 		63D080DC2D7F68AE00625FE7 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080DB2D7F68AE00625FE7 /* Extentions.swift */; };
 		63D0810C2D8353BC00625FE7 /* Cardinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0810B2D8353BC00625FE7 /* Cardinfo.swift */; };
+		63D0810E2D8B750C00625FE7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0810D2D8B750C00625FE7 /* DataManager.swift */; };
 		7D5FBF112D77908D00469328 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FBF102D77908D00469328 /* ProgressView.swift */; };
 		7D5FBF132D77909D00469328 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FBF122D77909D00469328 /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		63D080D92D7F68A900625FE7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		63D080DB2D7F68AE00625FE7 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		63D0810B2D8353BC00625FE7 /* Cardinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardinfo.swift; sourceTree = "<group>"; };
+		63D0810D2D8B750C00625FE7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7D5FBF102D77908D00469328 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		7D5FBF122D77909D00469328 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				63D080C12D7A18B900625FE7 /* GoogleService-Info.plist */,
+				63D0810D2D8B750C00625FE7 /* DataManager.swift */,
 				63D080832D778ABF00625FE7 /* NewSenseiApp.swift */,
 				63D080D22D7A1B8000625FE7 /* User.swift */,
 				63D080D02D7A1B7700625FE7 /* SignUpView.swift */,
@@ -229,6 +232,7 @@
 				63D080D12D7A1B7700625FE7 /* SignUpView.swift in Sources */,
 				63D080842D778ABF00625FE7 /* NewSenseiApp.swift in Sources */,
 				63D080D62D7F685F00625FE7 /* CardView.swift in Sources */,
+				63D0810E2D8B750C00625FE7 /* DataManager.swift in Sources */,
 				63D080982D778B2E00625FE7 /* SkillCreation.swift in Sources */,
 				63D080D32D7A1B8000625FE7 /* User.swift in Sources */,
 				63D080DC2D7F68AE00625FE7 /* Extentions.swift in Sources */,

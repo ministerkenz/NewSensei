@@ -10,28 +10,28 @@ import Foundation
 
 struct Cardinfo: Identifiable {
     let id = UUID()
-    let step1 : String
-    let step2 : String
-    let step3 : String
-    let step4 : String
-    let step5 : String
-    let step6 : String
-    let step7 : String
-    let step8 : String
-    let step9 : String
-    let step10 : String
-    let step11 : String
-    let step12 : String
-    let step13 : String
-    let step14 : String
-    let step15 : String
-    let step16 : String
-    let step17 : String
-    let step18 : String
-    let step19 : String
+    var step1 : String
+    var step2 : String
+    var step3 : String
+    var step4 : String
+    var step5 : String
+    var step6 : String
+    var step7 : String
+    var step8 : String
+    var step9 : String
+    var step10 : String
+    var step11 : String
+    var step12 : String
+    var step13 : String
+    var step14 : String
+    var step15 : String
+    var step16 : String
+    var step17 : String
+    var step18 : String
+    var step19 : String
    
     
-    init(step1: String, step2: String, step3: String, step4: String, step5: String, step6: String, step7: String, step8: String, step9: String, step10: String, step11: String, step12: String, step13: String, step14: String, step15: String, step16: String, step17: String, step18: String, step19: String) {
+    init(step1: String = "tie", step2: String = "tie", step3: String = "tie", step4: String = "tie", step5: String = "tie", step6: String = "tie", step7: String = "tie", step8: String = "tie", step9: String = "tie", step10: String = "tie", step11: String = "tie", step12: String = "tie", step13: String = "tie", step14: String = "tie", step15: String = "tie", step16: String = "tie", step17: String = "tie", step18: String = "tie", step19: String = "tie") {
         self.step1 = step1
         self.step2 = step2
         self.step3 = step3

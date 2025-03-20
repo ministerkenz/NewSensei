@@ -30,7 +30,12 @@ struct SkillDetailView: View {
                 }
                 
                 Button(action: {
-                    isNavigating = true 
+                    if contact.name.contains("tie") || contact.name.contains("Tie") {
+                        isNavigating = true
+                    } else {
+                        // For other skills (you could add more specific handling later)
+                        isNavigating = true
+                    }
                 }, label: {
                     Text("Begin")
                         .padding()
