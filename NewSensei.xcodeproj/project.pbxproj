@@ -101,13 +101,13 @@
 			isa = PBXGroup;
 			children = (
 				63D080C12D7A18B900625FE7 /* GoogleService-Info.plist */,
-				63D0810D2D8B750C00625FE7 /* DataManager.swift */,
 				63D080832D778ABF00625FE7 /* NewSenseiApp.swift */,
 				63D080D22D7A1B8000625FE7 /* User.swift */,
 				63D080D02D7A1B7700625FE7 /* SignUpView.swift */,
 				63D080912D778AEC00625FE7 /* Home Screen.swift */,
 				63D080932D778B1A00625FE7 /* skillinfo.swift */,
 				63D0810B2D8353BC00625FE7 /* Cardinfo.swift */,
+				63D0810D2D8B750C00625FE7 /* DataManager.swift */,
 				63D080952D778B2700625FE7 /* skillinfoview.swift */,
 				63D080972D778B2E00625FE7 /* SkillCreation.swift */,
 				63D080992D778B3700625FE7 /* SkillDetailView.swift */,
