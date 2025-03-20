@@ -4,8 +4,11 @@ struct Home_Screen: View {
     @State var contacts: [skillinfo] = [
         skillinfo(name: "Making a tie", picture: "tie"),
         skillinfo(name: "Doing some laundry", picture: "laundry", requirements: "you need some dirty clothes, washing machine soap, and probably a washing machine", amountofsteps: "16"),
-        skillinfo(name: "Changing your tire", picture: "tirechange", requirements: "you need a car, another tire, and whatever they use to change it", amountofsteps: "23")
-    ]
+        skillinfo(name: "Changing your tire", picture: "tirechange", requirements: "you need a car, another tire, and whatever they use to change it", amountofsteps: "23") ]
+    
+    
+    
+    
     
     var body: some View {
         NavigationView {
