@@ -2,42 +2,64 @@ import SwiftUI
 
 struct Home_Screen: View {
     @State var contacts: [skillinfo] = [
-        skillinfo(name: "Making a tie", picture: "tie"),
-        skillinfo(name: "Doing some laundry", picture: "laundry", requirements: "you need some dirty clothes, washing machine soap, and probably a washing machine", amountofsteps: "16"),
-        skillinfo(name: "Changing your tire", picture: "tirechange", requirements: "you need a car, another tire, and whatever they use to change it", amountofsteps: "23") ]
+        skillinfo(name: "Making a Tie", picture: "tie", requirements: "You need a tie to learn this essential skill", amountofsteps: "19"),
+        skillinfo(name: "Doing Laundry", picture: "laundry", requirements: "You need some dirty clothes, washing machine, detergent, and dryer or drying rack", amountofsteps: "19"),
+        skillinfo(name: "Changing a Tire", picture: "tirechange", requirements: "You need a car, spare tire, jack, and lug wrench", amountofsteps: "23")
+    ]
     
-    
-    
-    
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("HOME AARAV gupta PAGE")
+                Text("SENSEI")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top)
+                
+                Text("Learn Essential Life Skills")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom)
                 
                 TabView(selection: .constant(1)) {
-                    HStack {
-                        NavigationLink(destination: SkillDetailView(contact: $contacts[1])) {
-                            Image("house")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 125, height: 500)
-                                .clipped()
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            ForEach(0..<contacts.count) { index in
+                                NavigationLink(destination: SkillDetailView(contact: $contacts[index])) {
+                                    HStack {
+                                        Image(contacts[index].picture)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 100, height: 100)
+                                            .clipShape(Circle())
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text(contacts[index].name)
+                                                .font(.headline)
+                                            
+                                            Text(contacts[index].requirements)
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                                .lineLimit(2)
+                                            
+                                            Text("\(contacts[index].amountofsteps) steps")
+                                                .font(.caption)
+                                                .padding(.top, 5)
+                                        }
+                                        .padding(.leading)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding()
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                    .shadow(radius: 2)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
                         }
-                        NavigationLink(destination: SkillDetailView(contact: $contacts[0])) {
-                            Image("tie")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 125, height: 500)
-                                .clipped()
-                        }
-                        NavigationLink(destination: SkillDetailView(contact: $contacts[2])) {
-                            Image("tirechange")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 125, height: 500)
-                                .clipped()
-                        }
+                        .padding()
                     }
                     .tabItem { Label("Home", systemImage: "house.fill") }
                     .tag(1)
@@ -51,10 +73,12 @@ struct Home_Screen: View {
                         .tag(3)
                 }
             }
+            .navigationBarHidden(true)
         }
     }
 }
 
 #Preview {
     Home_Screen()
+        .environmentObject(User())
 }

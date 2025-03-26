@@ -4,7 +4,8 @@ struct SkillDetailView: View {
     
     @Binding var contact: skillinfo
     @State private var isNavigating = false
-
+    @State private var selectedSkill = "tie" // Default to tie
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -14,28 +15,32 @@ struct SkillDetailView: View {
                     .clipShape(Circle())
                     .padding()
                     .contrast(contact.contrast)
+                
                 TextField("Name", text: $contact.name)
                     .font(.title)
                     .padding(.horizontal)
+                
                 TextField("Description", text: $contact.requirements)
                     .padding(.horizontal)
-                    .keyboardType(.phonePad)
+                
                 TextField("Amount of steps", text: $contact.amountofsteps)
                     .padding(.horizontal)
-                    .keyboardType(.emailAddress)
                 
                 // NavigationLink triggered by state variable
-                NavigationLink(destination: ContentView(), isActive: $isNavigating) {
+                NavigationLink(destination: ContentView(skillType: selectedSkill), isActive: $isNavigating) {
                     EmptyView()
                 }
                 
                 Button(action: {
-                    if contact.name.contains("tie") || contact.name.contains("Tie") {
-                        isNavigating = true
+                    // Determine which skill to navigate to
+                    if contact.name.lowercased().contains("tie") {
+                        selectedSkill = "tie"
+                    } else if contact.name.lowercased().contains("laundry") {
+                        selectedSkill = "laundry"
                     } else {
-                        // For other skills (you could add more specific handling later)
-                        isNavigating = true
+                        selectedSkill = "tie" // Default fallback
                     }
+                    isNavigating = true
                 }, label: {
                     Text("Begin")
                         .padding()
@@ -43,6 +48,7 @@ struct SkillDetailView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 })
+                .padding()
             }
             .navigationTitle("Skill Detail")
         }
