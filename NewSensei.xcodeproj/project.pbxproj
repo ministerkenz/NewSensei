@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A3953E82D8B3BDE007B116A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0A3953E72D8B3BDE007B116A /* FirebaseFirestore */; };
 		0A3953EA2D8B3BDE007B116A /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0A3953E92D8B3BDE007B116A /* FirebaseFirestoreCombine-Community */; };
+		63A456612D94894900D2F1DF /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63A456602D94894900D2F1DF /* correct.mp3 */; };
 		63D080842D778ABF00625FE7 /* NewSenseiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080832D778ABF00625FE7 /* NewSenseiApp.swift */; };
 		63D080862D778ABF00625FE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080852D778ABF00625FE7 /* ContentView.swift */; };
 		63D080882D778AC000625FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D080872D778AC000625FE7 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63A456602D94894900D2F1DF /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = "../../assests for sensei/Sounds/correct.mp3"; sourceTree = "<group>"; };
 		63D080802D778ABF00625FE7 /* NewSensei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewSensei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D080832D778ABF00625FE7 /* NewSenseiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSenseiApp.swift; sourceTree = "<group>"; };
 		63D080852D778ABF00625FE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,9 +82,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63A4565C2D94861D00D2F1DF /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				63A456602D94894900D2F1DF /* correct.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		63D080772D778ABF00625FE7 = {
 			isa = PBXGroup;
 			children = (
+				63A4565C2D94861D00D2F1DF /* Sounds */,
 				63D080822D778ABF00625FE7 /* NewSensei */,
 				63D080812D778ABF00625FE7 /* Products */,
 				63D080D42D7F66BA00625FE7 /* Frameworks */,
@@ -213,6 +224,7 @@
 				63D0808B2D778AC000625FE7 /* Preview Assets.xcassets in Resources */,
 				63D080882D778AC000625FE7 /* Assets.xcassets in Resources */,
 				63D080C22D7A18B900625FE7 /* GoogleService-Info.plist in Resources */,
+				63A456612D94894900D2F1DF /* correct.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
