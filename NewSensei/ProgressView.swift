@@ -11,7 +11,7 @@ struct ProgressView: View {
         
         NavigationStack {
             ZStack {
-                Color.background1
+                Color.white
                     .ignoresSafeArea(.all)
                 VStack {
                     HStack {
@@ -51,7 +51,7 @@ struct SecondView: View {
     
     var body: some View {
         ZStack {
-            Color.background1
+            Color.white
                 .ignoresSafeArea()
             VStack {
                 Text("Change your avatar")

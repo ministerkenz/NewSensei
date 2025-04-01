@@ -1,15 +1,42 @@
-//
-//  StoreView.swift
-//  NewSensei
-//
-//  Created by Aarav Gupta (student LM) on 4/1/25.
-//
-
 import SwiftUI
 
 struct StoreView: View {
+    @State private var gems: Int = 1000
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
+            
+            VStack {
+                Text("STORE")
+                    .font(.title)
+                    .bold()
+                    .padding()
+            
+                HStack {
+                    Text("GEMS: \(gems)")
+                        .font(.title)
+                        .bold()
+                    Image("gems1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .padding(.trailing, 10)
+                }
+                .padding()
+               
+                Button(action: {}, label: {
+                    Image("frank1")
+                })
+                .padding()
+
+                Button(action: {}, label: {
+                    Image("purple1")
+                })
+            }
+            .padding()
+        }
     }
 }
 
