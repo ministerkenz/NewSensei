@@ -22,7 +22,7 @@ struct Home_Screen: View {
                     .foregroundColor(.gray)
                     .padding(.bottom)
                 
-                TabView(selection: .constant(1)) {
+                TabView {
                     ScrollView {
                         VStack(spacing: 20) {
                             ForEach(0..<contacts.count) { index in
@@ -64,7 +64,7 @@ struct Home_Screen: View {
                     .tabItem { Label("Home", systemImage: "house.fill") }
                     .tag(1)
                     
-                    Text("ACCOUNT PAGE")
+                    ProgressView(progress1: Binding.constant(ProgressBar()))
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
                         .tag(2)
                     
