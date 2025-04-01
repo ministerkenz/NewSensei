@@ -1,9 +1,10 @@
-// ContentView.swift
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @StateObject private var dataManager = DataManager()
     @State private var currentIndex: Int = 0
+    @State private var audioPlayer: AVAudioPlayer?
     var skillType: String = "tie" // Default to tie skill
     
     // Computed property to get all steps as array based on skill type
@@ -73,6 +74,20 @@ struct ContentView: View {
         }
     }
 
+    // Initialize audio player
+    private func setupAudioPlayer() {
+        guard let soundURL = Bundle.main.url(forResource: "correct", withExtension: "mp3") else {
+            print("Sound file not found")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+        } catch {
+            print("Error setting up audio player: \(error.localizedDescription)")
+        }
+    }
+
     var body: some View {
         VStack {
             // Display current skill and step
@@ -127,6 +142,7 @@ struct ContentView: View {
                 Button("Next") {
                     if currentIndex < steps.count - 1 {
                         currentIndex += 1
+                        playNextSound() // Play sound when Next is pressed
                     }
                 }
                 .disabled(currentIndex >= steps.count - 1)
@@ -136,13 +152,21 @@ struct ContentView: View {
                 .cornerRadius(10)
             }
         }
+        .onAppear(perform: setupAudioPlayer) 
+        // Where I set up audio player when view appears
     }
 
     private func handleSwipe(direction: Int) {
         if direction > 0 && currentIndex < steps.count - 1 {
             currentIndex += 1
+            playNextSound() // Play sound when swiped
         } else if direction < 0 && currentIndex > 0 {
             currentIndex -= 1
         }
+    }
+    
+    // Function to play sound
+    private func playNextSound() {
+        audioPlayer?.play()
     }
 }
