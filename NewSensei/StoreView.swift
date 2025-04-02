@@ -1,39 +1,54 @@
 import SwiftUI
 
 struct StoreView: View {
-    @State private var gems: Int = 1000
-    
+    @Binding var accountBackgroundColor: Color
+    @Binding var profileImage: String
+
     var body: some View {
         ZStack {
             Color.white
                 .ignoresSafeArea()
-            
+
             VStack {
                 Text("STORE")
                     .font(.title)
                     .bold()
                     .padding()
-            
+
                 HStack {
-                    Text("GEMS: \(gems)")
+                    Text("GEMS: 1000")
                         .font(.title)
                         .bold()
                     Image("gems1")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .padding(.trailing, 10)
+                        .frame(width: 50, height: 50)
+                        .padding(.leading, 10)
                 }
                 .padding()
-               
-                Button(action: {}, label: {
-                    Image("frank1")
-                })
+
+                // Button to Toggle Background Color (Purple/White)
+                Button(action: {
+                    accountBackgroundColor = (accountBackgroundColor == .white) ? .purple : .white
+                }) {
+                    Image("purple1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                }
                 .padding()
 
-                Button(action: {}, label: {
-                    Image("purple1")
-                })
+                // Button to Toggle Profile Image (colt1 <-> frank1)
+                Button(action: {
+                    profileImage = (profileImage == "colt1") ? "frank1" : "colt1"
+                }) {
+                    Image("frank1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                    
+                }
+                .padding()
             }
             .padding()
         }
@@ -41,5 +56,5 @@ struct StoreView: View {
 }
 
 #Preview {
-    StoreView()
+    StoreView(accountBackgroundColor: .constant(.white), profileImage: .constant("colt1"))
 }

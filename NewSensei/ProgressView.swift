@@ -6,9 +6,7 @@ struct ProgressView: View {
     @State private var progress: Double = 0.0
     @Binding var progress1: ProgressBar
     
-    
     var body: some View {
-        
         NavigationStack {
             ZStack {
                 Color.white
@@ -34,17 +32,21 @@ struct ProgressView: View {
                     .padding()
                     ProgressBar()
                     Text("\(Int(200 - progress)) points left")
-                                            .font(.headline)
-                                            .bold()
-                                            .padding(.top, 5)
+                        .font(.headline)
+                        .bold()
+                        .padding(.top, 5)
                 }
                 .padding()
             }
         }
-        
     }
 }
 
+#Preview {
+    ProgressView(progress1: Binding.constant(ProgressBar()))
+}
+
+// SecondView Definition
 struct SecondView: View {
     @Binding var firstImage: String
     @Binding var secondImage: String
@@ -56,7 +58,6 @@ struct SecondView: View {
             VStack {
                 Text("Change your avatar")
                 Button(action: {
-                    
                     let temp = firstImage
                     firstImage = secondImage
                     secondImage = temp
@@ -67,10 +68,8 @@ struct SecondView: View {
                         .frame(width: 300, height: 300)
                         .padding()
                 }
-                
             }
         }
-        
     }
 }
 
