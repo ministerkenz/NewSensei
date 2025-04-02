@@ -25,6 +25,8 @@ class User: ObservableObject{
 
     @Published var laundryS: Bool = false
 
+    @Published var skill: Int = 0
+
 
 
     init(email: String = "", password: String = "") {
@@ -47,7 +49,9 @@ class User: ObservableObject{
 
             "shoeS": shoeS,
 
-            "laundryS": laundryS
+            "laundryS": laundryS,
+            
+            "skill": skill
 
         ]
 
@@ -89,6 +93,10 @@ class User: ObservableObject{
 
             self.laundryS = laundryS
 
+        }
+        
+        if let skill = d["skill"] as? Int{
+            self.skill = skill
         }
 
     }

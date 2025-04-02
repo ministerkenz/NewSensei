@@ -1,24 +1,32 @@
 import SwiftUI
 
 struct ProgressView: View {
-    @State private var firstImage = "colt1"
-    @State private var secondImage = "brock"
     @State private var progress: Double = 0.0
     @Binding var progress1: ProgressBar
-    
+    var backgroundColor: Color
+    var backgroundImage: String?
+    var profileImage: String
+
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white
-                    .ignoresSafeArea(.all)
+                if let bgImage = backgroundImage {
+                    Image(bgImage)
+                        .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea()
+                } else {
+                    backgroundColor
+                        .ignoresSafeArea()
+                }
+
                 VStack {
                     HStack {
-                        NavigationLink(destination: SecondView(firstImage: $firstImage, secondImage: $secondImage)) {
-                            Image(firstImage)
-                                .resizable()
-                                .padding()
-                                .frame(width: 200, height: 200, alignment: .topTrailing)
-                        }
+                        Image(profileImage)
+                            .resizable()
+                            .padding()
+                            .frame(width: 200, height: 200, alignment: .topTrailing)
+
                         VStack {
                             Text("NAME")
                                 .bold()
@@ -30,7 +38,9 @@ struct ProgressView: View {
                         Spacer()
                     }
                     .padding()
+
                     ProgressBar()
+
                     Text("\(Int(200 - progress)) points left")
                         .font(.headline)
                         .bold()
@@ -43,36 +53,8 @@ struct ProgressView: View {
 }
 
 #Preview {
-    ProgressView(progress1: Binding.constant(ProgressBar()))
-}
-
-// SecondView Definition
-struct SecondView: View {
-    @Binding var firstImage: String
-    @Binding var secondImage: String
-    
-    var body: some View {
-        ZStack {
-            Color.white
-                .ignoresSafeArea()
-            VStack {
-                Text("Change your avatar")
-                Button(action: {
-                    let temp = firstImage
-                    firstImage = secondImage
-                    secondImage = temp
-                }) {
-                    Image(secondImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                        .padding()
-                }
-            }
-        }
-    }
-}
-
-#Preview {
-    ProgressView(progress1: Binding.constant(ProgressBar()))
+    ProgressView(progress1: Binding.constant(ProgressBar()),
+                 backgroundColor: .white,
+                 backgroundImage: nil,
+                 profileImage: "colt1")
 }

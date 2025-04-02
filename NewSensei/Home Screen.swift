@@ -2,7 +2,8 @@ import SwiftUI
 
 struct Home_Screen: View {
     @State private var accountBackgroundColor: Color = .white
-    @State private var profileImage: String = "colt1" // Default profile image
+    @State private var accountBackgroundImage: String? = nil
+    @State private var profileImage: String = "colt1" // 
 
     @State var contacts: [skillinfo] = [
         skillinfo(name: "Making a Tie", picture: "tie", requirements: "You need a tie to learn this essential skill", amountofsteps: "19"),
@@ -66,10 +67,15 @@ struct Home_Screen: View {
                     }
                     .tabItem { Label("Home", systemImage: "house.fill") }
 
-                    ProgressView(progress1: .constant(ProgressBar())) 
+                    ProgressView(progress1: .constant(ProgressBar()),
+                                 backgroundColor: accountBackgroundColor,
+                                 backgroundImage: accountBackgroundImage,
+                                 profileImage: profileImage)
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
 
-                    StoreView(accountBackgroundColor: $accountBackgroundColor, profileImage: $profileImage)
+                    StoreView(accountBackgroundColor: $accountBackgroundColor,
+                              accountBackgroundImage: $accountBackgroundImage,
+                              profileImage: $profileImage)
                         .tabItem { Label("Store", systemImage: "bag.fill") }
                 }
             }
