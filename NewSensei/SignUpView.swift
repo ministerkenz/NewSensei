@@ -1,10 +1,9 @@
 import SwiftUI
-import FirebaseFirestore
+import FirebaseDatabase
 import FirebaseAuth
 
 struct SignUpView: View {
     @EnvironmentObject var user: User
-    @State private var userName = ""
     @State private var navigateToHome = false
     
     var body: some View {
@@ -19,9 +18,6 @@ struct SignUpView: View {
                         .font(.title)
                     Spacer()
                     
-                    TextField("User Name (No need to type if you are signing in)", text: $userName)
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     TextField("Email Address", text: $user.email)
                         .padding()
@@ -71,23 +67,7 @@ struct SignUpView: View {
         }
     }
     
-    func saveUserData(uid: String, userName: String) {
-        let db = Firestore.firestore()
-        
-        let data: [String: Any] = [
-            "user name": userName,
-            "email": user.email
-        ]
-        
-        db.collection("users").document(uid).setData(data) { error in
-            if let error = error {
-                print("Error saving user data: \(error.localizedDescription)")
-            } else {
-                print("User data saved successfully!")
-                navigateToHome = true
-            }
-        }
-    }
+    
     
     func login() async {
         do {
@@ -97,6 +77,14 @@ struct SignUpView: View {
             DispatchQueue.main.async {
                 navigateToHome = true
             }
+            
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            
+            guard let data = try? await Database.database().reference().child("users/\(uid)").getData() else {return}
+            
+            // cast data.value to a dictionary and pass to decode
+            guard let dictionary = data.value as? [String: Any] else {return}
+            user.decode(data: dictionary)
         } catch let e as Error {
             print(e)
         }
@@ -106,9 +94,12 @@ struct SignUpView: View {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: user.email, password: user.password)
             user.isUserAuthenticated = true
-            saveUserData(uid: authResult.user.uid, userName: userName)
         } catch let e as Error {
             print(e)
         }
     }
+}
+#Preview {
+    SignUpView()
+        .environmentObject(User())
 }
