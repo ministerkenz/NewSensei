@@ -1,60 +1,60 @@
 import SwiftUI
 
 struct ProgressView: View {
-    @State private var progress: Double = 0.0
-    @Binding var progress1: ProgressBar
-    var backgroundColor: Color
-    var backgroundImage: String?
-    var profileImage: String
+    @Binding var progress1: CGFloat // Binding for progress (progress is a CGFloat)
+    @Binding var backgroundColor: Color
+    @Binding var backgroundImage: String?
+    @Binding var profileImage: String
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                if let bgImage = backgroundImage {
-                    Image(bgImage)
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea()
-                } else {
-                    backgroundColor
-                        .ignoresSafeArea()
-                }
+        ZStack {
+            // Background color/image
+            if let backgroundImage = backgroundImage {
+                Image(backgroundImage)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            } else {
+                backgroundColor
+                    .ignoresSafeArea()
+            }
+
+            VStack {
+                Spacer()
+                Image(profileImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 10)
+                Spacer()
+                Spacer()
+                Spacer()
 
                 VStack {
-                    HStack {
-                        Image(profileImage)
-                            .resizable()
-                            .padding()
-                            .frame(width: 200, height: 200, alignment: .topTrailing)
-
-                        VStack {
-                            Text("NAME")
-                                .bold()
-                                .font(.title)
-                            Text("Skill: ??")
-                                .bold()
-                                .font(.title)
-                        }
-                        Spacer()
-                    }
-                    .padding()
-
-                    ProgressBar()
-
-                    Text("\(Int(200 - progress)) points left")
+                    Text("Progress Bar")
                         .font(.headline)
-                        .bold()
-                        .padding(.top, 5)
+                        .foregroundColor(.white)
+                        .padding(.top)
+
+                    ProgressBar(progress: progress1)
+                        .padding()
                 }
                 .padding()
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(10)
+
+                Spacer()
             }
+            .padding(.bottom, 40)
         }
     }
 }
 
 #Preview {
-    ProgressView(progress1: Binding.constant(ProgressBar()),
-                 backgroundColor: .white,
-                 backgroundImage: nil,
-                 profileImage: "colt1")
+    ProgressView(progress1: .constant(0.55),
+                 backgroundColor: .constant(.white),
+                 backgroundImage: .constant(nil),
+                 profileImage: .constant("colt1"))
 }
