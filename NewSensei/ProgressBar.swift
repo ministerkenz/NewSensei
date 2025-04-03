@@ -26,4 +26,6 @@ struct ProgressBar: View {
 
 #Preview {
     ProgressBar()
+        .environmentObject(User())
+
 }

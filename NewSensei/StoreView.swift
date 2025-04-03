@@ -90,3 +90,4 @@ struct StoreView: View {
               accountBackgroundImage: .constant(nil),
               profileImage: .constant("colt1"))
 }
+
