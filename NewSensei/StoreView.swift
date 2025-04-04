@@ -5,80 +5,130 @@ struct StoreView: View {
     @Binding var accountBackgroundImage: String?
     @Binding var profileImage: String
 
-    let profileImages = ["colt1", "brock", "frank1"] // Cycle through these
-    let backgroundImages = [nil, "purple1"] // Toggle between these images
-    let backgroundColors: [Color] = [.white, .purple] // Toggle between colors
+    let profileImages = ["colt1", "brock", "frank1"]
+    let backgroundImages = [nil, "purple1"]
 
     var body: some View {
         ZStack {
-            accountBackgroundColor
-                .ignoresSafeArea(edges: .all) // Makes the background ignore all safe areas
+            
+            if let bgImage = accountBackgroundImage {
+                Image(bgImage)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            } else {
+                accountBackgroundColor
+                    .ignoresSafeArea()
+            }
 
-            VStack {
-                // Larger "STORE" title
+            VStack(alignment: .center) {
+
                 Text("STORE")
                     .font(.largeTitle)
                     .bold()
                     .padding(.top)
 
-                // Gems section
+             
                 HStack {
                     Text("GEMS: 1000")
                         .font(.title2)
                         .bold()
+                        .foregroundColor(.black)
 
                     Image("gems1")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50) // Adjusted size
+                        .frame(width: 100, height: 50)
                         .padding(.leading, 10)
                 }
                 .padding()
 
-                // Background Image Toggle Button
-                Button(action: {
-                    accountBackgroundImage = (accountBackgroundImage == nil) ? "purple1" : nil
-                }) {
-                    Image("purple1")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150) // Larger image
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                }
-                .padding()
+                
+                Text("Backgrounds")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .padding(.bottom, 5)
 
-                // Background Color Toggle Button
-                Button(action: {
-                    if let currentIndex = backgroundColors.firstIndex(of: accountBackgroundColor) {
-                        let nextIndex = (currentIndex + 1) % backgroundColors.count
-                        accountBackgroundColor = backgroundColors[nextIndex]
-                    }
-                }) {
-                    Image("purple")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150) // Larger image
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                }
-                .padding()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 80) {
+                       
+                        Button(action: {
+                            accountBackgroundImage = nil
+                            accountBackgroundColor = .purple
+                        }) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.purple)
+                                .frame(width: 120, height: 120)
+                                .overlay(
+                                    Text("Purple")
+                                        .foregroundColor(.white)
+                                        .bold()
+                                )
+                                .shadow(radius: 5)
+                        }
 
-                // Profile Image Switch Button
-                Button(action: {
-                    if let currentIndex = profileImages.firstIndex(of: profileImage) {
-                        let nextIndex = (currentIndex + 1) % profileImages.count
-                        profileImage = profileImages[nextIndex]
+                        
+                        Button(action: {
+                            accountBackgroundImage = nil
+                            accountBackgroundColor = .white
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.white)
+                                    .frame(width: 120, height: 120)
+                                    .shadow(radius: 5)
+
+                                Text("Default")
+                                    .foregroundColor(.black)
+                                    .bold()
+                            }
+                        }
+
+                        
+                        ForEach(backgroundImages.indices, id: \.self) { index in
+                            if let imageName = backgroundImages[index] {
+                                Button(action: {
+                                    accountBackgroundImage = imageName
+                                }) {
+                                    Image(imageName)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
+                                }
+                            }
+                        }
                     }
-                }) {
-                    Image(profileImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200) // Larger profile image
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
+                    .padding(.horizontal)
                 }
-                .padding()
+
+          
+                Text("Choose Your Profile")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .padding(.top, 30)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(profileImages, id: \.self) { imageName in
+                            Button(action: {
+                                profileImage = imageName
+                            }) {
+                                Image(imageName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 120, height: 120)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(profileImage == imageName ? Color.blue : Color.clear, lineWidth: 4))
+                                    .shadow(radius: 5)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+
+                Spacer()
             }
             .padding()
         }
@@ -86,8 +136,13 @@ struct StoreView: View {
 }
 
 #Preview {
-    StoreView(accountBackgroundColor: .constant(.white),
-              accountBackgroundImage: .constant(nil),
-              profileImage: .constant("colt1"))
-}
+    @State var backgroundColor: Color = .white
+    @State var backgroundImage: String? = nil
+    @State var profile: String = "colt1"
 
+    return StoreView(
+        accountBackgroundColor: $backgroundColor,
+        accountBackgroundImage: $backgroundImage,
+        profileImage: $profile
+    )
+}
