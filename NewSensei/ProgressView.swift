@@ -23,6 +23,19 @@ struct ProgressView: View {
             }
 
             VStack {
+                Spacer()
+                Image(profileImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 10)
+                Spacer()
+                Spacer()
+                Spacer()
+
+            VStack {
                 VStack {
                     Text("Progress Bar")
                         .font(.headline)
