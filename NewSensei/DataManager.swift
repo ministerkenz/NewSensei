@@ -5,6 +5,7 @@ import Foundation
 class DataManager: ObservableObject {
     @Published var tieSteps: Cardinfo
     @Published var laundrySteps: Cardinfo
+    @Published var tirechangeSteps: Cardinfo
     
     init() {
         self.tieSteps = Cardinfo(
@@ -26,7 +27,7 @@ class DataManager: ObservableObject {
             step16: "Tighten slightly if needed",
             step17: "Make any final adjustments",
             step18: "Your tie is now perfectly knotted",
-            step19: "Finish"
+            step19: "Finished"
         )
         
         self.laundrySteps = Cardinfo(
@@ -47,8 +48,30 @@ class DataManager: ObservableObject {
             step15: "Shake clothes to reduce wrinkles before drying",
             step16: "Transfer to dryer or hang to air dry",
             step17: "For dryer: clean lint filter, select appropriate heat setting",
-            step18: "Remove clothes from dryer when slightly damp to reduce wrinkles",
-            step19: "Fold or hang clothes immediately to prevent wrinkles"
+            step18: "Remove clothes from dryer and fold or hang clothes immediately to prevent wrinkles",
+            step19: "finished"
+        )
+        
+        self.tirechangeSteps = Cardinfo(
+            step1: "Park on a flat, stable surface and turn on hazard lights",
+            step2: "Apply the parking brake and place wheel chocks (if available) on the opposite side of the tire you're changing",
+            step3: "Take out the spare tire, jack, and lug wrench from your vehicle",
+            step4: "Use the flat end of the lug wrench to remove the hubcap (if present)",
+            step5: "Loosen the lug nuts by turning counterclockwise with the lug wrench (don't remove them yet)",
+            step6: "Position the jack under the vehicle at the recommended lifting point near the flat tire",
+            step7: "Raise the jack until it makes contact with the vehicle's frame",
+            step8: "Continue jacking up the vehicle until the flat tire is about 6 inches off the ground",
+            step9: "Remove the lug nuts completely and place them in a safe location where they won't roll away",
+            step10: "Remove the flat tire by pulling it straight toward you",
+            step11: "Place the flat tire under the vehicle's frame as a safety precaution in case the jack fails",
+            step12: "Line up the spare tire with the wheel bolts and push it into place",
+            step13: "Thread the lug nuts back onto the bolts by hand, turning clockwise",
+            step14: "Tighten the lug nuts partially with the lug wrench in a star pattern",
+            step15: "Lower the vehicle partially by turning the jack handle slowly",
+            step16: "Fully tighten all lug nuts with the wrench, using the star pattern again",
+            step17: "Lower the vehicle completely and remove the jack",
+            step18: "Check that all lug nuts are fully tightened and replace the hubcap if applicable",
+            step19: "Finished"
         )
     }
 }
