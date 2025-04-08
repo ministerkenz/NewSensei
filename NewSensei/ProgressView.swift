@@ -50,7 +50,7 @@ struct ProgressView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 4))
                         .shadow(radius: 10)
-                    TextField("Enter user name", text: $user.userName)
+                    TextField(user.userName, text: $user.userName)
                         .font(.title2)
                         .padding()
                     Spacer()

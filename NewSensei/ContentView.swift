@@ -32,6 +32,28 @@ struct ContentView: View {
                 dataManager.laundrySteps.step18,
                 dataManager.laundrySteps.step19
             ]
+        case "tirechange":
+            return [
+                dataManager.tirechangeSteps.step1,
+                dataManager.tirechangeSteps.step2,
+                dataManager.tirechangeSteps.step3,
+                dataManager.tirechangeSteps.step4,
+                dataManager.tirechangeSteps.step5,
+                dataManager.tirechangeSteps.step6,
+                dataManager.tirechangeSteps.step7,
+                dataManager.tirechangeSteps.step8,
+                dataManager.tirechangeSteps.step9,
+                dataManager.tirechangeSteps.step10,
+                dataManager.tirechangeSteps.step11,
+                dataManager.tirechangeSteps.step12,
+                dataManager.tirechangeSteps.step13,
+                dataManager.tirechangeSteps.step14,
+                dataManager.tirechangeSteps.step15,
+                dataManager.tirechangeSteps.step16,
+                dataManager.tirechangeSteps.step17,
+                dataManager.tirechangeSteps.step18,
+                dataManager.tirechangeSteps.step19
+            ]
         default: // "tie" or any other default
             return [
                 dataManager.tieSteps.step1,
@@ -69,6 +91,8 @@ struct ContentView: View {
             return "tie\(currentIndex + 1)"
         case "laundry":
             return "laundry\(currentIndex + 1)"
+        case "tirechange":
+            return "tirechange\(currentIndex + 1)"
         default:
             return "tie\(currentIndex + 1)"
         }

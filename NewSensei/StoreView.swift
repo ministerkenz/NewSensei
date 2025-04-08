@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct StoreView: View {
+    @EnvironmentObject var user: User
     @Binding var accountBackgroundColor: Color
     @Binding var accountBackgroundImage: String?
     @Binding var profileImage: String
@@ -30,7 +31,7 @@ struct StoreView: View {
 
              
                 HStack {
-                    Text("GEMS: 1000")
+                    Text("GEMS: \(user.gems)")
                         .font(.title2)
                         .bold()
                         .foregroundColor(.black)
@@ -145,4 +146,5 @@ struct StoreView: View {
         accountBackgroundImage: $backgroundImage,
         profileImage: $profile
     )
+    .environmentObject(User())
 }

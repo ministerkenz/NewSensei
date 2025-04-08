@@ -32,14 +32,8 @@ struct SkillDetailView: View {
                 }
                 
                 Button(action: {
-                    // Determine which skill to navigate to
-                    if contact.name.lowercased().contains("tie") {
-                        selectedSkill = "tie"
-                    } else if contact.name.lowercased().contains("laundry") {
-                        selectedSkill = "laundry"
-                    } else {
-                        selectedSkill = "tie" // Default fallback
-                    }
+                    // Determine which skill to navigate to based on the contact's picture property
+                    selectedSkill = contact.picture // Use the picture property directly as it matches our skill types
                     isNavigating = true
                 }, label: {
                     Text("Begin")
@@ -51,6 +45,10 @@ struct SkillDetailView: View {
                 .padding()
             }
             .navigationTitle("Skill Detail")
+            .onAppear {
+                // Ensure selectedSkill is set correctly when view appears
+                selectedSkill = contact.picture
+            }
         }
     }
 }

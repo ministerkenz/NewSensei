@@ -24,7 +24,7 @@ struct NewSenseiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Home_Screen()
+            SignUpView()
                 .environmentObject(user)
         }
     }

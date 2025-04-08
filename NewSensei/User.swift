@@ -17,15 +17,15 @@ class User: ObservableObject{
 
     @Published var isUserAuthenticated: Bool = false
 
-    @Published var userName: String = ""
+    @Published var userName: String = "Enter Your User Name"
 
-    @Published var tieS: Bool = false
+    @Published var tieS: Int = 0
 
-    @Published var shoeS: Bool = false
+    @Published var shoeS: Int = 0
 
-    @Published var laundryS: Bool = false
+    @Published var laundryS: Int = 0
 
-    @Published var skill: Int = 0
+    @Published var gems: Int = 25
 
 
 
@@ -51,7 +51,7 @@ class User: ObservableObject{
 
             "laundryS": laundryS,
             
-            "skill": skill
+            "gems": gems
 
         ]
 
@@ -77,26 +77,26 @@ class User: ObservableObject{
 
         
 
-        if let tieS = d["tieS"] as? Bool{
+        if let tieS = d["tieS"] as? Int{
 
             self.tieS = tieS
 
         }
 
-        if let shoeS = d["shoeS"] as? Bool{
+        if let shoeS = d["shoeS"] as? Int{
 
             self.shoeS = shoeS
 
         }
 
-        if let laundryS = d["laundryS"] as? Bool{
+        if let laundryS = d["laundryS"] as? Int{
 
             self.laundryS = laundryS
 
         }
         
-        if let skill = d["skill"] as? Int{
-            self.skill = skill
+        if let gems = d["gems"] as? Int{
+            self.gems = gems
         }
 
     }
