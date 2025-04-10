@@ -39,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		632131A42DA5AB4D006A83FC /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = "../../assests for sensei/Sounds/correct.mp3"; sourceTree = "<group>"; };
 		63D080802D778ABF00625FE7 /* NewSensei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewSensei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D080832D778ABF00625FE7 /* NewSenseiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSenseiApp.swift; sourceTree = "<group>"; };
 		63D080852D778ABF00625FE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		63D0810D2D8B750C00625FE7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7D5FBF102D77908D00469328 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		7D5FBF122D77909D00469328 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		7D7830DC2D9C5FBE009F6191 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = ../../../../Downloads/correct.mp3; sourceTree = "<group>"; };
 		7D7830DD2D9C6020009F6191 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,7 @@
 		63A4565C2D94861D00D2F1DF /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				7D7830DC2D9C5FBE009F6191 /* correct.mp3 */,
+				632131A42DA5AB4D006A83FC /* correct.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
