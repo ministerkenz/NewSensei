@@ -44,7 +44,7 @@ struct SkillDetailView: View {
                 })
                 .padding()
             }
-            .navigationTitle("Skill Detail")
+            .navigationTitle("Skill Details")
             .onAppear {
                 // Ensure selectedSkill is set correctly when view appears
                 selectedSkill = contact.picture

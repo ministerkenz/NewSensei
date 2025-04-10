@@ -6,6 +6,7 @@ class DataManager: ObservableObject {
     @Published var tieSteps: Cardinfo
     @Published var laundrySteps: Cardinfo
     @Published var tirechangeSteps: Cardinfo
+    @Published var waterSteps: Cardinfo
     
     init() {
         self.tieSteps = Cardinfo(
@@ -71,6 +72,27 @@ class DataManager: ObservableObject {
             step16: "Fully tighten all lug nuts with the wrench, using the star pattern again",
             step17: "Lower the vehicle completely and remove the jack",
             step18: "Check that all lug nuts are fully tightened and replace the hubcap if applicable",
+            step19: "Finished"
+        )
+        self.waterSteps = Cardinfo(
+            step1: "Gather a graduated cylinder and some water",
+            step2: "Choose an object whose volume you want to measure.",
+            step3: "Place the cylinder on a flat surface.",
+            step4: "Pour water into the cylinder without filling it to the top.",
+            step5: "Let the water settle.",
+            step6: "Read the water level at eye level.",
+            step7: "Record the initial volume of water.",
+            step8: "Carefully hold the object above the cylinder.",
+            step9: "Gently lower the object into the water.",
+            step10: "Avoid splashing or spilling water.",
+            step11: "Let the object sink fully and settle.",
+            step12: "Check for and wait until all air bubbles are gone.",
+            step13: "Read the new water level at eye level.",
+            step14: "Record the final volume of water.",
+            step15: "Subtract the initial volume from the final volume.",
+            step16: "The result is the volume of the object.",
+            step17: "Lower the vehicle completely and remove the jack",
+            step18: "Remove the object and dry it off.",
             step19: "Finished"
         )
     }
