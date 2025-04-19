@@ -10,6 +10,7 @@ struct Home_Screen: View {
         skillinfo(name: "Doing Laundry", picture: "laundry", requirements: "You need some dirty clothes, washing machine, detergent, and dryer or drying rack", amountofsteps: "19"),
         skillinfo(name: "Changing a Tire", picture: "tirechange", requirements: "You need a car, spare tire, jack, and lug wrench", amountofsteps: "19"),
         skillinfo(name: "Water displacement method", picture: "water", requirements: "2 measurement beakers, water, and an object", amountofsteps: "19")
+        
     ]
 
     @EnvironmentObject var user: User

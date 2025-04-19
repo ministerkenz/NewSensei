@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A3953E82D8B3BDE007B116A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0A3953E72D8B3BDE007B116A /* FirebaseFirestore */; };
 		0A3953EA2D8B3BDE007B116A /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0A3953E92D8B3BDE007B116A /* FirebaseFirestoreCombine-Community */; };
+		633726322DB33A930064E45E /* SkillCompletionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633726312DB33A930064E45E /* SkillCompletionStatus.swift */; };
 		63D080842D778ABF00625FE7 /* NewSenseiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080832D778ABF00625FE7 /* NewSenseiApp.swift */; };
 		63D080862D778ABF00625FE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D080852D778ABF00625FE7 /* ContentView.swift */; };
 		63D080882D778AC000625FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D080872D778AC000625FE7 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		632131A42DA5AB4D006A83FC /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = "../../assests for sensei/Sounds/correct.mp3"; sourceTree = "<group>"; };
+		633726312DB33A930064E45E /* SkillCompletionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCompletionStatus.swift; sourceTree = "<group>"; };
 		63D080802D778ABF00625FE7 /* NewSensei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewSensei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D080832D778ABF00625FE7 /* NewSenseiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSenseiApp.swift; sourceTree = "<group>"; };
 		63D080852D778ABF00625FE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				63D080832D778ABF00625FE7 /* NewSenseiApp.swift */,
 				7D7830DD2D9C6020009F6191 /* StoreView.swift */,
 				63D080D22D7A1B8000625FE7 /* User.swift */,
+				633726312DB33A930064E45E /* SkillCompletionStatus.swift */,
 				63D080D02D7A1B7700625FE7 /* SignUpView.swift */,
 				63D080912D778AEC00625FE7 /* Home Screen.swift */,
 				63D080932D778B1A00625FE7 /* skillinfo.swift */,
@@ -238,6 +241,7 @@
 			files = (
 				63D0809A2D778B3700625FE7 /* SkillDetailView.swift in Sources */,
 				63D080DA2D7F68A900625FE7 /* Colors.swift in Sources */,
+				633726322DB33A930064E45E /* SkillCompletionStatus.swift in Sources */,
 				63D080862D778ABF00625FE7 /* ContentView.swift in Sources */,
 				63D080962D778B2700625FE7 /* skillinfoview.swift in Sources */,
 				63D0809C2D778B3B00625FE7 /* Navigation.swift in Sources */,
