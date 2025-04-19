@@ -4,12 +4,15 @@ struct Home_Screen: View {
     @State private var accountBackgroundColor: Color = .white
     @State private var accountBackgroundImage: String? = nil
     @State private var profileImage: String = "colt1" 
+    @State private var navigateToHome = false
+
 
     @State var contacts: [skillinfo] = [
         skillinfo(name: "Making a Tie", picture: "tie", requirements: "You need a tie to learn this essential skill", amountofsteps: "19"),
         skillinfo(name: "Doing Laundry", picture: "laundry", requirements: "You need some dirty clothes, washing machine, detergent, and dryer or drying rack", amountofsteps: "19"),
         skillinfo(name: "Changing a Tire", picture: "tirechange", requirements: "You need a car, spare tire, jack, and lug wrench", amountofsteps: "19"),
         skillinfo(name: "Water displacement method", picture: "water", requirements: "2 measurement beakers, water, and an object", amountofsteps: "19")
+        
     ]
 
     @EnvironmentObject var user: User
@@ -73,7 +76,8 @@ struct Home_Screen: View {
                     ProgressView(progress1: .constant(0.55),
                                  backgroundColor: $accountBackgroundColor,
                                  backgroundImage: $accountBackgroundImage,
-                                 profileImage: $profileImage)
+                                 profileImage: $profileImage,
+                                 navigateToHome: $navigateToHome)
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
 
                     // Store Tab

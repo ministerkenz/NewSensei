@@ -11,7 +11,7 @@ struct StoreView: View {
 
     var body: some View {
         ZStack {
-            
+            // Background
             if let bgImage = accountBackgroundImage {
                 Image(bgImage)
                     .resizable()
@@ -23,28 +23,60 @@ struct StoreView: View {
             }
 
             VStack(alignment: .center) {
-
                 Text("STORE")
                     .font(.largeTitle)
                     .bold()
                     .padding(.top)
 
-             
+                // Gem display with enhanced visual
                 HStack {
-                    Text("GEMS: \(user.gems)")
-                        .font(.title2)
-                        .bold()
-                        .foregroundColor(.black)
+                    VStack(alignment: .leading) {
+                        Text("YOUR GEMS")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                        
+                        Text("\(user.gems)")
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundColor(.black)
+                    }
 
+                    Spacer()
+                    
                     Image("gems1")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 50)
-                        .padding(.leading, 10)
+                        .frame(width: 100, height: 60)
                 }
                 .padding()
+                .background(Color.white.opacity(0.8))
+                .cornerRadius(15)
+                .shadow(radius: 5)
+                .padding()
 
+                // Completed skills section
+                VStack(alignment: .leading) {
+                    Text("COMPLETED SKILLS")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .padding(.bottom, 5)
+                    
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 10) {
+                            CompletionRow(skillName: "Making a Tie", isCompleted: user.isSkillCompleted(skillType: "tie"))
+                            CompletionRow(skillName: "Doing Laundry", isCompleted: user.isSkillCompleted(skillType: "laundry"))
+                            CompletionRow(skillName: "Changing a Tire", isCompleted: user.isSkillCompleted(skillType: "tirechange"))
+                            CompletionRow(skillName: "Water Displacement Method", isCompleted: user.isSkillCompleted(skillType: "water"))
+                        }
+                    }
+                    .frame(height: 120)
+                }
+                .padding()
+                .background(Color.white.opacity(0.8))
+                .cornerRadius(15)
+                .shadow(radius: 3)
+                .padding()
                 
+                // Backgrounds section
                 Text("Backgrounds")
                     .font(.headline)
                     .foregroundColor(.black)
@@ -52,7 +84,7 @@ struct StoreView: View {
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 80) {
-                       
+                        // Purple background option
                         Button(action: {
                             accountBackgroundImage = nil
                             accountBackgroundColor = .purple
@@ -68,7 +100,7 @@ struct StoreView: View {
                                 .shadow(radius: 5)
                         }
 
-                        
+                        // Default background option
                         Button(action: {
                             accountBackgroundImage = nil
                             accountBackgroundColor = .white
@@ -85,7 +117,7 @@ struct StoreView: View {
                             }
                         }
 
-                        
+                        // Image backgrounds
                         ForEach(backgroundImages.indices, id: \.self) { index in
                             if let imageName = backgroundImages[index] {
                                 Button(action: {
@@ -104,7 +136,7 @@ struct StoreView: View {
                     .padding(.horizontal)
                 }
 
-          
+                // Profile selection
                 Text("Choose Your Profile")
                     .font(.headline)
                     .foregroundColor(.black)
@@ -136,15 +168,47 @@ struct StoreView: View {
     }
 }
 
-#Preview {
-    @State var backgroundColor: Color = .white
-    @State var backgroundImage: String? = nil
-    @State var profile: String = "colt1"
+// Helper component to show completion status
+struct CompletionRow: View {
+    var skillName: String
+    var isCompleted: Bool
+    
+    var body: some View {
+        HStack {
+            Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
+                .foregroundColor(isCompleted ? .green : .gray)
+            
+            Text(skillName)
+                .foregroundColor(isCompleted ? .black : .gray)
+            
+            Spacer()
+            
+            if isCompleted {
+                Text("+50")
+                    .foregroundColor(.green)
+                    .fontWeight(.bold)
+                
+                Image("gems1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
+        }
+        .padding(.vertical, 5)
+    }
+}
 
-    return StoreView(
-        accountBackgroundColor: $backgroundColor,
-        accountBackgroundImage: $backgroundImage,
-        profileImage: $profile
-    )
-    .environmentObject(User())
+struct StoreView_Previews: PreviewProvider {
+    static var previews: some View {
+        @State var backgroundColor: Color = .white
+        @State var backgroundImage: String? = nil
+        @State var profile: String = "colt1"
+
+        return StoreView(
+            accountBackgroundColor: $backgroundColor,
+            accountBackgroundImage: $backgroundImage,
+            profileImage: $profile
+        )
+        .environmentObject(User())
+    }
 }

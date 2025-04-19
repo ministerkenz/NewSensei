@@ -8,6 +8,8 @@ struct ProgressView: View {
     @Binding var backgroundColor: Color
     @Binding var backgroundImage: String?
     @Binding var profileImage: String
+    @Binding var navigateToHome: Bool
+
     
     var body: some View {
         ZStack {
@@ -57,10 +59,10 @@ struct ProgressView: View {
                     Spacer()
                     Spacer()
                     Button {
-                        Task{
-                            guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Task{
+                        guard let uid = Auth.auth().currentUser?.uid else {return}
                             
-                            let result = try? await Database.database().reference().child("users").child(uid).setValue(user.encode())
+                        let result = try? await Database.database().reference().child("users").child(uid).setValue(user.encode())
                         }
                     } label: {
                         ZStack{
@@ -72,6 +74,28 @@ struct ProgressView: View {
                                 .foregroundColor(.white)
                         }
                     }.padding()
+                    
+                    Button {
+                        let result = try? Auth.auth().signOut()
+                        if let _ = result {
+                            navigateToHome = false
+                            user.userName = ""
+                            user.isUserAuthenticated = false
+                            user.email = ""
+                            user.password = ""
+                            user.gems = 0
+                            user.gems = 0
+                        }
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                                .foregroundStyle(.blue)
+                                .cornerRadius(20)
+                                .frame(width: 350, height: 50)
+                            Text("Log out")
+                                .foregroundColor(.white)
+                        }
+                    }.padding(.bottom, 50)
                     Spacer()
                 }
                 .padding(.bottom, 40)
@@ -85,7 +109,8 @@ struct ProgressView: View {
     ProgressView(progress1: .constant(0.55),
                  backgroundColor: .constant(.white),
                  backgroundImage: .constant(nil),
-                 profileImage: .constant("colt1"))
+                 profileImage: .constant("colt1"),
+                 navigateToHome: .constant(false))
     .environmentObject(User())
 
 }

@@ -4,7 +4,7 @@ import FirebaseAuth
 
 struct SignUpView: View {
     @EnvironmentObject var user: User
-    @State private var navigateToHome = false
+    @Binding var navigateToHome: Bool
     
     var body: some View {
         NavigationView {
@@ -32,6 +32,7 @@ struct SignUpView: View {
                     Button(action: {
                         Task {
                             await login()
+                            navigateToHome = true
                         }
                     }, label: {
                         Text("Log In")
@@ -57,9 +58,6 @@ struct SignUpView: View {
                     }
                     .padding(.bottom, 60)
                     
-                    NavigationLink(destination: Home_Screen(), isActive: $navigateToHome) {
-                        EmptyView()
-                    }
                 }
                 .padding()
             }
@@ -100,6 +98,6 @@ struct SignUpView: View {
     }
 }
 #Preview {
-    SignUpView()
+    SignUpView(navigateToHome: .constant(false))
         .environmentObject(User())
 }

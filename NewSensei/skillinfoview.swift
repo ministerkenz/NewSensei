@@ -46,4 +46,5 @@ struct skillinfoview: View {
 
 #Preview {
     skillinfoview()
+        .environmentObject(User())
 }

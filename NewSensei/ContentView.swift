@@ -1,221 +1,196 @@
 import SwiftUI
-import AVFoundation
 
 struct ContentView: View {
+    var skillType: String
+    
     @StateObject private var dataManager = DataManager()
-    @State private var currentIndex: Int = 0
-    @State private var audioPlayer: AVAudioPlayer?
-    var skillType: String = "tie" // Default to tie skill
+    @State private var currentStep = 0
+    @State private var showCompletionButton = false
+    @State private var isSkillCompleted = false
     
-    // Computed property to get all steps as array based on skill type
-    private var steps: [String] {
-        switch skillType.lowercased() {
-        case "laundry":
-            return [
-                dataManager.laundrySteps.step1,
-                dataManager.laundrySteps.step2,
-                dataManager.laundrySteps.step3,
-                dataManager.laundrySteps.step4,
-                dataManager.laundrySteps.step5,
-                dataManager.laundrySteps.step6,
-                dataManager.laundrySteps.step7,
-                dataManager.laundrySteps.step8,
-                dataManager.laundrySteps.step9,
-                dataManager.laundrySteps.step10,
-                dataManager.laundrySteps.step11,
-                dataManager.laundrySteps.step12,
-                dataManager.laundrySteps.step13,
-                dataManager.laundrySteps.step14,
-                dataManager.laundrySteps.step15,
-                dataManager.laundrySteps.step16,
-                dataManager.laundrySteps.step17,
-                dataManager.laundrySteps.step18,
-                dataManager.laundrySteps.step19
-            ]
-        case "tirechange":
-            return [
-                dataManager.tirechangeSteps.step1,
-                dataManager.tirechangeSteps.step2,
-                dataManager.tirechangeSteps.step3,
-                dataManager.tirechangeSteps.step4,
-                dataManager.tirechangeSteps.step5,
-                dataManager.tirechangeSteps.step6,
-                dataManager.tirechangeSteps.step7,
-                dataManager.tirechangeSteps.step8,
-                dataManager.tirechangeSteps.step9,
-                dataManager.tirechangeSteps.step10,
-                dataManager.tirechangeSteps.step11,
-                dataManager.tirechangeSteps.step12,
-                dataManager.tirechangeSteps.step13,
-                dataManager.tirechangeSteps.step14,
-                dataManager.tirechangeSteps.step15,
-                dataManager.tirechangeSteps.step16,
-                dataManager.tirechangeSteps.step17,
-                dataManager.tirechangeSteps.step18,
-                dataManager.tirechangeSteps.step19
-            ]
-        case "water":
-            return [
-                dataManager.waterSteps.step1,
-                dataManager.waterSteps.step2,
-                dataManager.waterSteps.step3,
-                dataManager.waterSteps.step4,
-                dataManager.waterSteps.step5,
-                dataManager.waterSteps.step6,
-                dataManager.waterSteps.step7,
-                dataManager.waterSteps.step8,
-                dataManager.waterSteps.step9,
-                dataManager.waterSteps.step10,
-                dataManager.waterSteps.step11,
-                dataManager.waterSteps.step12,
-                dataManager.waterSteps.step13,
-                dataManager.waterSteps.step14,
-                dataManager.waterSteps.step15,
-                dataManager.waterSteps.step16,
-                dataManager.waterSteps.step17,
-                dataManager.waterSteps.step18,
-                dataManager.waterSteps.step19
-            ]
-            
-        default: // "tie" or any other default
-            return [
-                dataManager.tieSteps.step1,
-                dataManager.tieSteps.step2,
-                dataManager.tieSteps.step3,
-                dataManager.tieSteps.step4,
-                dataManager.tieSteps.step5,
-                dataManager.tieSteps.step6,
-                dataManager.tieSteps.step7,
-                dataManager.tieSteps.step8,
-                dataManager.tieSteps.step9,
-                dataManager.tieSteps.step10,
-                dataManager.tieSteps.step11,
-                dataManager.tieSteps.step12,
-                dataManager.tieSteps.step13,
-                dataManager.tieSteps.step14,
-                dataManager.tieSteps.step15,
-                dataManager.tieSteps.step16,
-                dataManager.tieSteps.step17,
-                dataManager.tieSteps.step18,
-                dataManager.tieSteps.step19
-            ]
-        }
-    }
+    @EnvironmentObject var user: User
     
-    // Computed property to get skill title
-    private var skillTitle: String {
-        return skillType.capitalized
-    }
-    
-    // Get the image for the current step
-    private var currentStepImage: String {
-        switch skillType.lowercased() {
+    var skillSteps: Cardinfo {
+        switch skillType {
         case "tie":
-            return "tie\(currentIndex + 1)"
+            return dataManager.tieSteps
         case "laundry":
-            return "laundry\(currentIndex + 1)"
+            return dataManager.laundrySteps
         case "tirechange":
-            return "tirechange\(currentIndex + 1)"
+            return dataManager.tirechangeSteps
         case "water":
-            return "water\(currentIndex + 1)"
+            return dataManager.waterSteps
         default:
-            return "tie\(currentIndex + 1)"
+            return dataManager.tieSteps
         }
     }
-
-    // Initialize audio player
-    private func setupAudioPlayer() {
-        guard let soundURL = Bundle.main.url(forResource: "correct", withExtension: "mp3") else {
-            print("Sound file not found")
-            return
+    
+    var steps: [String] {
+        var result: [String] = []
+        for i in 1...19 {
+            let mirror = Mirror(reflecting: skillSteps)
+            if let stepValue = mirror.children.first(where: { $0.label == "step\(i)" })?.value as? String {
+                result.append(stepValue)
+            }
+        }
+        return result
+    }
+    
+    func goToNextStep() {
+        if currentStep < steps.count - 1 {
+            currentStep += 1
         }
         
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-        } catch {
-            print("Error setting up audio player: \(error.localizedDescription)")
-        }
-    }
-
-    var body: some View {
-        VStack {
-            // Display current skill and step
-            Text("\(skillTitle) - Step \(currentIndex + 1) of \(steps.count)")
-                .font(.headline)
-                .padding(.top)
-            
-            ZStack {
-                if currentIndex < steps.count {
-                    VStack {
-                        // Add image for current step if available
-                        Image(currentStepImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 200)
-                            .padding()
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(15)
-                            .padding()
-                        
-                        CardView(step: steps[currentIndex], onSwipe: { direction in
-                            handleSwipe(direction: direction)
-                        })
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    }
-                } else {
-                    Text("Tutorial Completed!")
-                        .font(.title)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.green))
-                }
-            }
-            .padding()
-            .animation(.easeInOut, value: currentIndex)
-
-            // Progress indicator
-            ProgressBar(progress: CGFloat(currentIndex) / CGFloat(steps.count - 1))
-                .padding()
-            
-            HStack {
-                Button("Back") {
-                    if currentIndex > 0 {
-                        currentIndex -= 1
-                    }
-                }
-                .disabled(currentIndex == 0)
-                .padding()
-                .background(currentIndex > 0 ? Color.blue : Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                
-                Button("Next") {
-                    if currentIndex < steps.count - 1 {
-                        currentIndex += 1
-                        playNextSound() // Play sound when Next is pressed
-                    }
-                }
-                .disabled(currentIndex >= steps.count - 1)
-                .padding()
-                .background(currentIndex < steps.count - 1 ? Color.blue : Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-            }
-        }
-        .onAppear(perform: setupAudioPlayer) 
-        // Where I set up audio player when view appears
-    }
-
-    private func handleSwipe(direction: Int) {
-        if direction > 0 && currentIndex < steps.count - 1 {
-            currentIndex += 1
-            playNextSound() // Play sound when swiped
-        } else if direction < 0 && currentIndex > 0 {
-            currentIndex -= 1
+        // Show completion button when reaching the last step
+        if currentStep == steps.count - 1 {
+            showCompletionButton = true
         }
     }
     
-    // Function to play sound
-    private func playNextSound() {
-        audioPlayer?.play()
+    func goToPreviousStep() {
+        if currentStep > 0 {
+            currentStep -= 1
+        }
+    }
+    
+    func handleSwipe(_ direction: Int) {
+        if direction > 0 {
+            goToPreviousStep()
+        } else {
+            goToNextStep()
+        }
+    }
+    
+    // Get the image name for the current step (simplified format: "tie1", "tie2", etc.)
+    func getStepImageName() -> String {
+        return "\(skillType)\(currentStep + 1)"
+    }
+    
+    var body: some View {
+        VStack {
+            // Title based on skill type
+            Text(getSkillTitle())
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
+            // Step counter
+            Text("Step \(currentStep + 1) of \(steps.count)")
+                .font(.headline)
+                .padding(.bottom)
+            
+            // Step image with simplified naming convention
+            Image(getStepImageName())
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
+                .cornerRadius(10)
+                .padding(.horizontal)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.gray.opacity(0.1))
+                )
+                .padding()
+            
+            // Swipeable card
+            CardView(step: steps[currentStep], onSwipe: handleSwipe)
+                .padding()
+            
+            // Navigation buttons
+            HStack {
+                Button(action: goToPreviousStep) {
+                    HStack {
+                        Image(systemName: "arrow.left")
+                        Text("Previous")
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+                }
+                .disabled(currentStep == 0)
+                
+                Spacer()
+                
+                Button(action: goToNextStep) {
+                    HStack {
+                        Text("Next")
+                        Image(systemName: "arrow.right")
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+                .disabled(currentStep == steps.count - 1)
+            }
+            .padding(.horizontal)
+            
+            // Completion button shown on the last step
+            if showCompletionButton {
+                VStack {
+                    Toggle("Mark as Completed", isOn: $isSkillCompleted)
+                        .padding()
+                        .onChange(of: isSkillCompleted) { newValue in
+                            if newValue {
+                                user.completeSkill(skillType: skillType)
+                            }
+                        }
+                    
+                    if isSkillCompleted {
+                        HStack {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                            Text("Skill completed! You earned 50 gems!")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.green)
+                            Image("gems1")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                        }
+                        .padding()
+                        .background(Color.green.opacity(0.1))
+                        .cornerRadius(10)
+                    }
+                }
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(15)
+                .padding()
+            }
+            
+            Spacer()
+        }
+        .onAppear {
+            // Check if the skill has been completed previously
+            isSkillCompleted = user.isSkillCompleted(skillType: skillType)
+            
+            // Show completion button if on the last step
+            if currentStep == steps.count - 1 {
+                showCompletionButton = true
+            }
+        }
+    }
+    
+    // Helper to get skill title from skill type
+    private func getSkillTitle() -> String {
+        switch skillType {
+        case "tie":
+            return "How to Tie a Tie"
+        case "laundry":
+            return "How to Do Laundry"
+        case "tirechange":
+            return "How to Change a Tire"
+        case "water":
+            return "Water Displacement Method"
+        default:
+            return "Skill Tutorial"
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(skillType: "tie")
+            .environmentObject(User())
     }
 }

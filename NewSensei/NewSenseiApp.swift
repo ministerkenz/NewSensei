@@ -20,11 +20,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct NewSenseiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var user: User = User()
+    @StateObject var user = User()
 
     var body: some Scene {
         WindowGroup {
-            SignUpView()
+            AppRootView()
+                .environmentObject(user)
+        }
+    }
+}
+
+struct AppRootView: View {
+    @EnvironmentObject var user: User
+    @State private var navigateToHome = false
+
+    var body: some View {
+        if navigateToHome {
+            Home_Screen()
+                .environmentObject(user)
+        } else {
+            SignUpView(navigateToHome: $navigateToHome)
                 .environmentObject(user)
         }
     }
