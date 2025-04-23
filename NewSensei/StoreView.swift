@@ -1,4 +1,6 @@
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
 
 struct StoreView: View {
     @EnvironmentObject var user: User
@@ -146,7 +148,21 @@ struct StoreView: View {
                     HStack(spacing: 20) {
                         ForEach(profileImages, id: \.self) { imageName in
                             Button(action: {
-                                profileImage = imageName
+                                if (user.gems>50){
+                                    profileImage = imageName
+                                    user.gems = user.gems - 50
+                                }else{
+                                    
+                                }
+                                Task {
+                                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                                    do {
+                                        let ref = Database.database().reference().child("users").child(uid)
+                                        try await ref.setValue(user.encode())
+                                        } catch {
+                                            print("Failed to save user data: \(error.localizedDescription)")
+                                        }
+                                    }
                             }) {
                                 Image(imageName)
                                     .resizable()

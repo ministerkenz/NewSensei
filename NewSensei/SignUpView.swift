@@ -43,15 +43,18 @@ struct SignUpView: View {
                             .cornerRadius(10)
                     })
                     .padding()
+                    HStack{
+                        Text("New to the Sensei?")
+                    }
                     
                     HStack {
-                        Text("New to the Sensei?")
+                        Text("Enter your email and password and")
                         Button(action: {
                             Task {
                                 await createUser()
                             }
                         }, label: {
-                            Text("Create Account")
+                            Text("click here")
                                 .foregroundColor(.blue)
                                 .underline()
                         })
