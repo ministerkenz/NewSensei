@@ -7,8 +7,7 @@ struct ProgressView: View {
     @Binding var progress1: CGFloat // Binding for progress (progress is a CGFloat)
     @Binding var backgroundColor: Color
     @Binding var backgroundImage: String?
-    @Binding var navigateToHome: Bool
-
+    @Binding var profileImage: String
     
     var body: some View {
         ZStack {
@@ -23,12 +22,12 @@ struct ProgressView: View {
                     .ignoresSafeArea()
             }
             
-            VStack {
-                Spacer()
-                Spacer()
-                Spacer()
-                
+            // Make the entire content scrollable
+            ScrollView {
                 VStack {
+                    Spacer()
+                        .frame(height: 40)
+                        
                     VStack {
                         Text("Progress Bar")
                             .font(.headline)
@@ -43,73 +42,57 @@ struct ProgressView: View {
                     .cornerRadius(10)
                     
                     Spacer()
+                        .frame(height: 30)
                     
-                    Image(user.avater)
+                    Image(profileImage)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 4))
                         .shadow(radius: 10)
+                    
                     TextField(user.userName, text: $user.userName)
                         .font(.title2)
                         .padding()
+                        .background(Color.white.opacity(0.7))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                    
                     Spacer()
-                    Spacer()
-                    Spacer()
+                        .frame(height: 40)
+                    
                     Button {
-                    Task{
-                        guard let uid = Auth.auth().currentUser?.uid else {return}
+                        Task {
+                            guard let uid = Auth.auth().currentUser?.uid else {return}
                             
-                        let result = try? await Database.database().reference().child("users").child(uid).setValue(user.encode())
+                            let result = try? await Database.database().reference().child("users").child(uid).setValue(user.encode())
                         }
                     } label: {
-                        ZStack{
+                        ZStack {
                             Rectangle()
                                 .foregroundStyle(.blue)
                                 .cornerRadius(20)
                                 .frame(width: 350, height: 50)
-                            Text("update user info")
+                            Text("Update User Info")
                                 .foregroundColor(.white)
                         }
                     }.padding()
                     
-                    Button {
-                        let result = try? Auth.auth().signOut()
-                        if let _ = result {
-                            navigateToHome = false
-                            user.userName = ""
-                            user.isUserAuthenticated = false
-                            user.email = ""
-                            user.password = ""
-                            user.avater = "colt1"
-                            user.gems = 0
-                            user.gems = 0
-                        }
-                    } label: {
-                        ZStack{
-                            Rectangle()
-                                .foregroundStyle(.blue)
-                                .cornerRadius(20)
-                                .frame(width: 350, height: 50)
-                            Text("Log out")
-                                .foregroundColor(.white)
-                        }
-                    }.padding(.bottom, 50)
+                    // Add spacing at the bottom to ensure content is scrollable
                     Spacer()
+                        .frame(height: 60)
                 }
                 .padding(.bottom, 40)
             }
         }
     }
-    
 }
 
 #Preview {
     ProgressView(progress1: .constant(0.55),
                  backgroundColor: .constant(.white),
                  backgroundImage: .constant(nil),
-                 navigateToHome: .constant(false))
+                 profileImage: .constant("colt1"))
     .environmentObject(User())
-
 }

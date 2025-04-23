@@ -67,98 +67,104 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            // Title based on skill type
-            Text(getSkillTitle())
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            // Step counter
-            Text("Step \(currentStep + 1) of \(steps.count)")
-                .font(.headline)
-                .padding(.bottom)
-            
-            // Step image with simplified naming convention
-            Image(getStepImageName())
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.horizontal)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.gray.opacity(0.1))
-                )
-                .padding()
-            
-            // Swipeable card
-            CardView(step: steps[currentStep], onSwipe: handleSwipe)
-                .padding()
-            
-            // Navigation buttons
-            HStack {
-                Button(action: goToPreviousStep) {
-                    HStack {
-                        Image(systemName: "arrow.left")
-                        Text("Previous")
-                    }
+        ScrollView {
+            VStack {
+                // Title based on skill type
+                Text(getSkillTitle())
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
                     .padding()
-                    .background(Color.gray.opacity(0.2))
+                
+                // Step counter
+                Text("Step \(currentStep + 1) of \(steps.count)")
+                    .font(.headline)
+                    .padding(.bottom)
+                
+                // Step image with simplified naming convention
+                Image(getStepImageName())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
                     .cornerRadius(10)
-                }
-                .disabled(currentStep == 0)
-                
-                Spacer()
-                
-                Button(action: goToNextStep) {
-                    HStack {
-                        Text("Next")
-                        Image(systemName: "arrow.right")
-                    }
+                    .padding(.horizontal)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.gray.opacity(0.1))
+                    )
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                }
-                .disabled(currentStep == steps.count - 1)
-            }
-            .padding(.horizontal)
-            
-            // Completion button shown on the last step
-            if showCompletionButton {
-                VStack {
-                    Toggle("Mark as Completed", isOn: $isSkillCompleted)
-                        .padding()
-                        .onChange(of: isSkillCompleted) { newValue in
-                            if newValue {
-                                user.completeSkill(skillType: skillType)
-                            }
-                        }
-                    
-                    if isSkillCompleted {
+                
+                // Swipeable card
+                CardView(step: steps[currentStep], onSwipe: handleSwipe)
+                    .padding()
+                
+                // Navigation buttons
+                HStack {
+                    Button(action: goToPreviousStep) {
                         HStack {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                            Text("Skill completed! You earned 50 gems!")
-                                .fontWeight(.semibold)
-                                .foregroundColor(.green)
-                            Image("gems1")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                            Image(systemName: "arrow.left")
+                            Text("Previous")
                         }
                         .padding()
-                        .background(Color.green.opacity(0.1))
+                        .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
                     }
+                    .disabled(currentStep == 0)
+                    
+                    Spacer()
+                    
+                    Button(action: goToNextStep) {
+                        HStack {
+                            Text("Next")
+                            Image(systemName: "arrow.right")
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+                    .disabled(currentStep == steps.count - 1)
                 }
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(15)
-                .padding()
+                .padding(.horizontal)
+                
+                // Completion button shown on the last step
+                if showCompletionButton {
+                    VStack {
+                        Toggle("Mark as Completed", isOn: $isSkillCompleted)
+                            .padding()
+                            .onChange(of: isSkillCompleted) { newValue in
+                                if newValue {
+                                    user.completeSkill(skillType: skillType)
+                                }
+                            }
+                        
+                        if isSkillCompleted {
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                                Text("Skill completed! You earned 50 gems!")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.green)
+                                Image("gems1")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                            }
+                            .padding()
+                            .background(Color.green.opacity(0.1))
+                            .cornerRadius(10)
+                        }
+                    }
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(15)
+                    .padding()
+                }
+                
+                // Add some extra space at the bottom for scrolling on the final step
+                if showCompletionButton {
+                    Spacer()
+                        .frame(height: 60)
+                }
             }
-            
-            Spacer()
         }
         .onAppear {
             // Check if the skill has been completed previously
