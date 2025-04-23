@@ -3,10 +3,11 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class User: ObservableObject {
-    @Published var userName: String = "User"
+    @Published var userName: String = "Change your Username"
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var gems: Int = 0
+    @Published var avater: String = "colt1"
     @Published var isUserAuthenticated: Bool = false
     @Published var completedSkills: [String: Bool] = [:]
     
@@ -38,6 +39,7 @@ class User: ObservableObject {
             "userName": userName,
             "email": email,
             "gems": gems,
+            "avater" : avater,
             "completedSkills": completedSkills
         ]
     }
@@ -48,5 +50,6 @@ class User: ObservableObject {
         self.email = data["email"] as? String ?? ""
         self.gems = data["gems"] as? Int ?? 0
         self.completedSkills = data["completedSkills"] as? [String: Bool] ?? [:]
+        self.avater = data["avater"] as? String ?? "colt1"
     }
 }

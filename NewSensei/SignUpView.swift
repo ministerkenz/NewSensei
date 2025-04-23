@@ -59,6 +59,9 @@ struct SignUpView: View {
                                 .underline()
                         })
                     }
+                    HStack{
+                        Text("Then, click the 'Log In' button again")
+                    }
                     .padding(.bottom, 60)
                     
                 }

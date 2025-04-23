@@ -5,7 +5,7 @@ struct Home_Screen: View {
     @State private var accountBackgroundImage: String? = nil
     @State private var profileImage: String = "colt1" 
     @State private var navigateToHome = false
-
+    @State private var enoughView = false
 
     @State var contacts: [skillinfo] = [
         skillinfo(name: "Making a Tie", picture: "tie", requirements: "You need a tie to learn this essential skill", amountofsteps: "19"),
@@ -76,14 +76,14 @@ struct Home_Screen: View {
                     ProgressView(progress1: .constant(0.55),
                                  backgroundColor: $accountBackgroundColor,
                                  backgroundImage: $accountBackgroundImage,
-                                 profileImage: $profileImage,
                                  navigateToHome: $navigateToHome)
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
 
                     // Store Tab
                     StoreView(accountBackgroundColor: $accountBackgroundColor,
                               accountBackgroundImage: $accountBackgroundImage,
-                              profileImage: $profileImage)
+                              profileImage: $profileImage,
+                              enoughView: $enoughView)
                         .tabItem { Label("Store", systemImage: "bag.fill") }
                 }
             }
