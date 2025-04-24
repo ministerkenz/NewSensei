@@ -36,7 +36,6 @@ struct Home_Screen: View {
                 .zIndex(1)
 
                 TabView {
-                    // Home Tab - Now with a proper ScrollView
                     VStack(spacing: 0) {
                         ScrollView {
                             VStack(spacing: 20) {
@@ -85,7 +84,7 @@ struct Home_Screen: View {
                     .tabItem { Label("Home", systemImage: "house.fill") }
 
                     // Progress View Tab
-                    ProgressView(progress1: .constant(0.55),
+                    ProgressView(progress1: .constant(0),
                                  backgroundColor: $accountBackgroundColor,
                                  backgroundImage: $accountBackgroundImage)
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
