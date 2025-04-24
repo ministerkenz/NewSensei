@@ -32,8 +32,7 @@ struct SkillDetailView: View {
                 }
                 
                 Button(action: {
-                    // Determine which skill to navigate to based on the contact's picture property
-                    selectedSkill = contact.picture // Use the picture property directly as it matches our skill types
+                    selectedSkill = contact.picture 
                     isNavigating = true
                 }, label: {
                     Text("Begin")

@@ -73,7 +73,6 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             VStack {
-                // Title based on skill type
                 Text(getSkillTitle())
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -171,10 +170,8 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            // Check if the skill has been completed previously
             isSkillCompleted = user.isSkillCompleted(skillType: skillType)
             
-            // Show completion button if on the last step
             if currentStep == steps.count - 1 {
                 showCompletionButton = true
             }

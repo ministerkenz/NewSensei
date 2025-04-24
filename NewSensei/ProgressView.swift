@@ -21,7 +21,6 @@ struct ProgressView: View {
                     .ignoresSafeArea()
             }
             
-            // Make the entire content scrollable
             ScrollView {
                 VStack {
                     Spacer()

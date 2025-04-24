@@ -30,7 +30,6 @@ struct SkillCompletionStatus: View {
                     }
                 }
             
-            // Success message when completed
             if isCompleted {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
