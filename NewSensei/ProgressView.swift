@@ -77,6 +77,28 @@ struct ProgressView: View {
                         }
                     }.padding()
                     
+                    Button {
+                        let result = try? Auth.auth().signOut()
+                        if let _ = result {
+                            user.email = ""
+                            user.password = ""
+                            user.userName = ""
+                            user.gems = 0
+                            user.isUserAuthenticated = false
+                            user.avater = ""
+                            user.completedSkills = [:]
+                        }
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                                .foregroundStyle(.blue)
+                                .cornerRadius(20)
+                                .frame(width: 350, height: 50)
+                            Text("Log out")
+                                .foregroundColor(.white)
+                        }
+                    }.padding(.bottom, 50)
+                    
                     // Add spacing at the bottom to ensure content is scrollable
                     Spacer()
                         .frame(height: 60)
