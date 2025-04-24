@@ -7,6 +7,8 @@ class DataManager: ObservableObject {
     @Published var laundrySteps: Cardinfo
     @Published var tirechangeSteps: Cardinfo
     @Published var waterSteps: Cardinfo
+    @Published var homeworkSteps: Cardinfo
+    @Published var licenseSteps: Cardinfo
     
     init() {
         self.tieSteps = Cardinfo(
@@ -94,6 +96,16 @@ class DataManager: ObservableObject {
             step17: "Lower the vehicle completely and remove the jack",
             step18: "Remove the object and dry it off.",
             step19: "Finished"
+        )
+        
+        self.homeworkSteps = Cardinfo(
+            step1: "Stop procrastinating",
+            step2: "Stop doing random stuff"
+            )
+        
+        self.licenseSteps = Cardinfo(
+            step1: "Obtain a driver manual",
+            step2: "Get a pencil"
         )
     }
 }

@@ -20,6 +20,10 @@ struct ContentView: View {
             return dataManager.tirechangeSteps
         case "water":
             return dataManager.waterSteps
+        case "gurt":
+            return dataManager.homeworkSteps
+        case "driver":
+            return dataManager.licenseSteps
         default:
             return dataManager.tieSteps
         }
