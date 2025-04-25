@@ -4,11 +4,15 @@ import FirebaseDatabase
 
 struct ProgressView: View {
     @EnvironmentObject var user: User
-    @Binding var progress1: CGFloat
     @Binding var backgroundColor: Color
     @Binding var backgroundImage: String?
-    
+
+    // Total number of skills in your app
+    private let totalSkills = 7
+
     var body: some View {
+        let progress = CGFloat(user.completedSkills.count) / CGFloat(totalSkills)
+
         ZStack {
             // Background color/image
             if let backgroundImage = backgroundImage {
@@ -20,28 +24,26 @@ struct ProgressView: View {
                 backgroundColor
                     .ignoresSafeArea()
             }
-            
+
             ScrollView {
                 VStack {
-                    Spacer()
-                        .frame(height: 40)
-                        
+                    Spacer().frame(height: 40)
+
                     VStack {
                         Text("Progress Bar")
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding(.top)
-                        
-                        ProgressBar(progress: progress1)
+
+                        ProgressBar(progress: progress)
                             .padding()
                     }
                     .padding()
                     .background(Color.black.opacity(0.5))
                     .cornerRadius(10)
-                    
-                    Spacer()
-                        .frame(height: 30)
-                    
+
+                    Spacer().frame(height: 30)
+
                     Image(user.avater)
                         .resizable()
                         .scaledToFit()
@@ -49,22 +51,23 @@ struct ProgressView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 4))
                         .shadow(radius: 10)
-                    
+
                     TextField(user.userName, text: $user.userName)
                         .font(.title2)
                         .padding()
                         .background(Color.white.opacity(0.7))
                         .cornerRadius(10)
                         .padding(.horizontal)
-                    
-                    Spacer()
-                        .frame(height: 40)
-                    
+
+                    Spacer().frame(height: 40)
+
                     Button {
                         Task {
-                            guard let uid = Auth.auth().currentUser?.uid else {return}
-                            
-                            let result = try? await Database.database().reference().child("users").child(uid).setValue(user.encode())
+                            guard let uid = Auth.auth().currentUser?.uid else { return }
+                            _ = try? await Database.database().reference()
+                                .child("users")
+                                .child(uid)
+                                .setValue(user.encode())
                         }
                     } label: {
                         ZStack {
@@ -89,7 +92,7 @@ struct ProgressView: View {
                             user.completedSkills = [:]
                         }
                     } label: {
-                        ZStack{
+                        ZStack {
                             Rectangle()
                                 .foregroundStyle(.blue)
                                 .cornerRadius(20)
@@ -98,11 +101,8 @@ struct ProgressView: View {
                                 .foregroundColor(.white)
                         }
                     }.padding(.bottom, 50)
-                    
-                    // Add spacing at the bottom to ensure content is scrollable
 
-                    Spacer()
-                        .frame(height: 60)
+                    Spacer().frame(height: 60)
                 }
                 .padding(.bottom, 40)
             }
@@ -111,8 +111,12 @@ struct ProgressView: View {
 }
 
 #Preview {
-    ProgressView(progress1: .constant(0.55),
-                 backgroundColor: .constant(.white),
-                 backgroundImage: .constant(nil))
-    .environmentObject(User())
+    let testUser = User()
+    testUser.completedSkills = ["tie": true, "laundry": true, "tire": true]
+
+    return ProgressView(
+        backgroundColor: .constant(.purple),
+        backgroundImage: .constant(nil)
+    )
+    .environmentObject(testUser)
 }

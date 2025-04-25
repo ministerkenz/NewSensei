@@ -5,6 +5,8 @@ struct Home_Screen: View {
     @State private var accountBackgroundImage: String? = nil
     @State private var enoughView: Bool = false
 
+    @EnvironmentObject var user: User
+
     @State var contacts: [skillinfo] = [
         skillinfo(name: "Making a Tie", picture: "tie", requirements: "You need a tie to learn this essential skill", amountofsteps: "19"),
         skillinfo(name: "Doing Laundry", picture: "laundry", requirements: "You need some dirty clothes, washing machine, detergent, and dryer or drying rack", amountofsteps: "19"),
@@ -13,15 +15,12 @@ struct Home_Screen: View {
         skillinfo(name: "How To Do Homework", picture: "gurt", requirements: "Your homework", amountofsteps: "19"),
         skillinfo(name: "How To Get Your Drivers License", picture: "driver", requirements: "A car", amountofsteps: "19"),
         skillinfo(name: "How To Become an Youtuber", picture: "youtube", requirements: "A laptop", amountofsteps: "19")
-        
     ]
-
-    @EnvironmentObject var user: User
 
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // Fixed header
+                // Header
                 VStack {
                     Text("SENSEI")
                         .font(.largeTitle)
@@ -36,7 +35,9 @@ struct Home_Screen: View {
                 .background(Color.white)
                 .zIndex(1)
 
+                // TabView with 3 sections
                 TabView {
+                    // Home Tab
                     VStack(spacing: 0) {
                         ScrollView {
                             VStack(spacing: 20) {
@@ -73,8 +74,7 @@ struct Home_Screen: View {
                                     }
                                     .buttonStyle(PlainButtonStyle())
                                 }
-                                
-                                // Add some extra padding at the bottom to ensure scrolling works well
+
                                 Spacer()
                                     .frame(height: 40)
                             }
@@ -84,17 +84,18 @@ struct Home_Screen: View {
                     }
                     .tabItem { Label("Home", systemImage: "house.fill") }
 
-                    // Progress View Tab
-                    ProgressView(progress1: .constant(0),
-                                 backgroundColor: $accountBackgroundColor,
-                                 backgroundImage: $accountBackgroundImage)
-                        .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
+                    // Account/Progress Tab
+                    ProgressView(
+                        backgroundColor: $accountBackgroundColor,
+                        backgroundImage: $accountBackgroundImage
+                    )
+                    .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
 
                     // Store Tab
                     StoreView(accountBackgroundColor: $accountBackgroundColor,
                               accountBackgroundImage: $accountBackgroundImage,
                               enoughView: $enoughView)
-                        .tabItem { Label("Store", systemImage: "bag.fill") }
+                    .tabItem { Label("Store", systemImage: "bag.fill") }
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
@@ -104,6 +105,9 @@ struct Home_Screen: View {
 }
 
 #Preview {
-    Home_Screen()
-        .environmentObject(User())
+    let mockUser = User()
+    mockUser.completedSkills = ["tie": true, "laundry": true, "tire": true]
+
+    return Home_Screen()
+        .environmentObject(mockUser)
 }

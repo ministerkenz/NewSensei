@@ -86,12 +86,12 @@ struct StoreView: View {
                             
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 10) {
-                                    CompletionRow(skillName: "Making a Tie", isCompleted: user.isSkillCompleted(skillType: "tie"))
+                                    CompletionRow(skillName: "Making A Tie", isCompleted: user.isSkillCompleted(skillType: "tie"))
                                     CompletionRow(skillName: "Doing Laundry", isCompleted: user.isSkillCompleted(skillType: "laundry"))
-                                    CompletionRow(skillName: "Changing a Tire", isCompleted: user.isSkillCompleted(skillType: "tirechange"))
+                                    CompletionRow(skillName: "Changing A Tire", isCompleted: user.isSkillCompleted(skillType: "tirechange"))
                                     CompletionRow(skillName: "Water Displacement Method", isCompleted: user.isSkillCompleted(skillType: "water"))
-                                    CompletionRow(skillName: "How to do Homework", isCompleted: user.isSkillCompleted(skillType: "gurt"))
-                                    CompletionRow(skillName: "How to get your drivers license", isCompleted: user.isSkillCompleted(skillType: "driver"))
+                                    CompletionRow(skillName: "How To Do Homework", isCompleted: user.isSkillCompleted(skillType: "gurt"))
+                                    CompletionRow(skillName: "How To Get Your Drivers License", isCompleted: user.isSkillCompleted(skillType: "driver"))
                                     
                                 }
                             }

@@ -11,7 +11,7 @@ struct LaunchView: View {
             Image("logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: animateLogo ? 900 : 100, height: animateLogo ? 900 : 100)
+                .frame(width: animateLogo ? 900 : 900, height: animateLogo ? 900 : 100)
                 .opacity(animateLogo ? 1 : 0)
                 .scaleEffect(animateLogo ? 1 : 0.5)
                 .animation(.easeOut(duration: 1), value: animateLogo)
@@ -19,7 +19,7 @@ struct LaunchView: View {
             Text("SENSEI")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .opacity(animateLogo ? 1 : 0)
                 .animation(.easeOut(duration: 1.2).delay(0.3), value: animateLogo)
         }
