@@ -92,6 +92,7 @@ struct StoreView: View {
                                     CompletionRow(skillName: "Water Displacement Method", isCompleted: user.isSkillCompleted(skillType: "water"))
                                     CompletionRow(skillName: "How To Do Homework", isCompleted: user.isSkillCompleted(skillType: "gurt"))
                                     CompletionRow(skillName: "How To Get Your Drivers License", isCompleted: user.isSkillCompleted(skillType: "driver"))
+                                    CompletionRow(skillName: "How To Become an Yotuber", isCompleted: user.isSkillCompleted(skillType: "youtube"))
                                     
                                 }
                             }
@@ -164,7 +165,13 @@ struct StoreView: View {
                         }
 
                         // Profile selection
-                        Text("Choose Your Profile")
+                        HStack{
+                            Text("Choose your profile 50: ")
+                            Image("gems1")
+                                .resizable()
+                                .frame(width:70, height: 35)
+                        }
+                        
                             .font(.headline)
                             .foregroundColor(.black)
                             .padding(.top, 30)
