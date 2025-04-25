@@ -18,6 +18,10 @@ struct SignUpView: View {
                         .font(.title)
                     Spacer()
                     
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                    Spacer()
                     
                     TextField("Email Address", text: $user.email)
                         .padding()
