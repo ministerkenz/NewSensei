@@ -6,8 +6,8 @@ struct LaunchView: View {
 
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
-
+            Color.black.ignoresSafeArea()
+            
             Image("logo")
                 .resizable()
                 .scaledToFit()
