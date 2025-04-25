@@ -33,11 +33,16 @@ struct NewSenseiApp: App {
 struct AppRootView: View {
     @EnvironmentObject var user: User
     @State private var navigateToHome = false
+    @State private var showLaunch = true
 
     var body: some View {
         if navigateToHome {
             Home_Screen()
                 .environmentObject(user)
+        } else if showLaunch {
+            LaunchView {
+                showLaunch = false
+            }
         } else {
             SignUpView(navigateToHome: $navigateToHome)
                 .environmentObject(user)

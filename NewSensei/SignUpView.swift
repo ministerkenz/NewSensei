@@ -44,7 +44,7 @@ struct SignUpView: View {
                     })
                     .padding()
                     HStack{
-                        Text("New to the Sensei?")
+                        Text("New to Sensei?")
                     }
                     
                     HStack {

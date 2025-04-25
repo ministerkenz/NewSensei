@@ -4,7 +4,7 @@ import FirebaseDatabase
 
 struct ProgressView: View {
     @EnvironmentObject var user: User
-    @Binding var progress1: CGFloat // Binding for progress (progress is a CGFloat)
+    @Binding var progress1: CGFloat
     @Binding var backgroundColor: Color
     @Binding var backgroundImage: String?
     
@@ -76,7 +76,7 @@ struct ProgressView: View {
                                 .foregroundColor(.white)
                         }
                     }.padding()
-                    
+
                     Button {
                         let result = try? Auth.auth().signOut()
                         if let _ = result {
@@ -100,6 +100,7 @@ struct ProgressView: View {
                     }.padding(.bottom, 50)
                     
                     // Add spacing at the bottom to ensure content is scrollable
+
                     Spacer()
                         .frame(height: 60)
                 }

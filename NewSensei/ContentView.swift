@@ -24,6 +24,8 @@ struct ContentView: View {
             return dataManager.homeworkSteps
         case "driver":
             return dataManager.licenseSteps
+        case "youtube":
+            return dataManager.youtuberSteps
         default:
             return dataManager.tieSteps
         }
@@ -201,3 +203,4 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(User())
     }
 }
+

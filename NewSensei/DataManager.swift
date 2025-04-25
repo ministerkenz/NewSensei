@@ -9,6 +9,8 @@ class DataManager: ObservableObject {
     @Published var waterSteps: Cardinfo
     @Published var homeworkSteps: Cardinfo
     @Published var licenseSteps: Cardinfo
+    @Published var youtuberSteps: Cardinfo
+    
     
     init() {
         self.tieSteps = Cardinfo(
@@ -107,5 +109,12 @@ class DataManager: ObservableObject {
             step1: "Obtain a driver manual",
             step2: "Get a pencil"
         )
+        
+        self.youtuberSteps = Cardinfo(
+            step1: "Make an Youtube account",
+            step2: "Get a camera",
+            step3: "Set up in a well lit place"
+        )
+        
     }
 }
