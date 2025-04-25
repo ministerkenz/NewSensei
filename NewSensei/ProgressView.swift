@@ -6,6 +6,7 @@ struct ProgressView: View {
     @EnvironmentObject var user: User
     @Binding var backgroundColor: Color
     @Binding var backgroundImage: String?
+    @Binding var navigateToHome: Bool
 
     // Total number of skills in your app
     private let totalSkills = 7
@@ -91,6 +92,7 @@ struct ProgressView: View {
                             user.avater = ""
                             user.completedSkills = [:]
                         }
+                        navigateToHome = false
                     } label: {
                         ZStack {
                             Rectangle()
@@ -116,7 +118,8 @@ struct ProgressView: View {
 
     return ProgressView(
         backgroundColor: .constant(.purple),
-        backgroundImage: .constant(nil)
+        backgroundImage: .constant(nil),
+        navigateToHome: .constant(false)
     )
     .environmentObject(testUser)
 }

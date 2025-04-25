@@ -37,7 +37,7 @@ struct AppRootView: View {
 
     var body: some View {
         if navigateToHome {
-            Home_Screen()
+            Home_Screen(navigateToHome:$navigateToHome)
                 .environmentObject(user)
         } else if showLaunch {
             LaunchView {

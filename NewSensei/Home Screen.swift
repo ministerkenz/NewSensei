@@ -4,6 +4,7 @@ struct Home_Screen: View {
     @State private var accountBackgroundColor: Color = .white
     @State private var accountBackgroundImage: String? = nil
     @State private var enoughView: Bool = false
+    @Binding var navigateToHome:Bool
 
     @EnvironmentObject var user: User
 
@@ -87,7 +88,7 @@ struct Home_Screen: View {
                     // Account/Progress Tab
                     ProgressView(
                         backgroundColor: $accountBackgroundColor,
-                        backgroundImage: $accountBackgroundImage
+                        backgroundImage: $accountBackgroundImage, navigateToHome: $navigateToHome
                     )
                     .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
 
@@ -108,6 +109,6 @@ struct Home_Screen: View {
     let mockUser = User()
     mockUser.completedSkills = ["tie": true, "laundry": true, "tire": true]
 
-    return Home_Screen()
+    return Home_Screen(navigateToHome:.constant(false))
         .environmentObject(mockUser)
 }
